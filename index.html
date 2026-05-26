@@ -1802,17 +1802,17 @@ Responda APENAS em JSON válido, sem markdown, sem explicações extras, exatame
 }`;
 
   try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+    const resp=await fetch('https://api.groq.com/openai/v1/chat/completions',{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{'Content-Type':'application/json','Authorization':'Bearer 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'},
       body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
+        model:'llama-3.3-70b-versatile',
         max_tokens:600,
         messages:[{role:'user',content:prompt}]
       })
     });
     const data=await resp.json();
-    const raw=data.content?.map(b=>b.text||'').join('')||'';
+    const raw=data.choices?.[0]?.message?.content||'';
     const clean=raw.replace(/```json|```/g,'').trim();
     const result=JSON.parse(clean);
 
@@ -2457,6 +2457,8 @@ function renderKanban(leads){
               <div class="k-menu-sep"></div>
               <div class="k-menu-item" onclick="openWpp('${l.telefone||''}');closeKMenus()">💬 WhatsApp</div>
             </div>
+          </div>
+        </div>
           </div>
         </div>
         <div class="ktags">
@@ -3480,18 +3482,18 @@ Instruções:
 - Máximo 300 palavras por resposta salvo quando pedir scripts completos`;
 
   try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+    const msgs=[{role:'system',content:systemPrompt},...aiHistory];
+    const resp=await fetch('https://api.groq.com/openai/v1/chat/completions',{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{'Content-Type':'application/json','Authorization':'Bearer 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'},
       body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
+        model:'llama-3.3-70b-versatile',
         max_tokens:1000,
-        system:systemPrompt,
-        messages:aiHistory,
+        messages:msgs,
       })
     });
     const data=await resp.json();
-    const reply=data.content?.map(b=>b.text||'').join('')||'Não consegui gerar uma resposta. Tente novamente.';
+    const reply=data.choices?.[0]?.message?.content||'Não consegui gerar uma resposta. Tente novamente.';
     aiRemoveTyping();
     aiAddMsg('ai',reply);
     aiHistory.push({role:'assistant',content:reply});
