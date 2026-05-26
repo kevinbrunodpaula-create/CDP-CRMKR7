@@ -1802,9 +1802,9 @@ Responda APENAS em JSON válido, sem markdown, sem explicações extras, exatame
 }`;
 
   try{
-    const resp=await fetch('https://api.groq.com/openai/v1/chat/completions',{
+    const resp=await fetch('https://tiny-wildflower-2814.kevinbrunodpaula.workers.dev/',{
       method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer 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'},
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         model:'llama-3.3-70b-versatile',
         max_tokens:600,
@@ -2457,8 +2457,6 @@ function renderKanban(leads){
               <div class="k-menu-sep"></div>
               <div class="k-menu-item" onclick="openWpp('${l.telefone||''}');closeKMenus()">💬 WhatsApp</div>
             </div>
-          </div>
-        </div>
           </div>
         </div>
         <div class="ktags">
@@ -3375,7 +3373,7 @@ document.addEventListener('click',e=>{if(e.target.classList.contains('modal-ov')
 
 <script>
 /* ── CHAT IA ── */
-const AI_KEY=''; // deixe vazio — a API já está configurada no ambiente
+// IA via Cloudflare Worker — sem chave exposta no frontend
 let aiHistory=[];
 let aiLeadCtx=null; // contexto do lead atual se aberto pelo card
 
@@ -3457,35 +3455,45 @@ async function aiEnviar(){
   const leadsAtivos=allLeads?.filter(l=>l.status!=='Fechado'&&l.status!=='Perdido').length||0;
   const leadsFechados=allLeads?.filter(l=>l.status==='Fechado').length||0;
 
-  const systemPrompt=`Você é o CDP Assistente, especialista em vendas imobiliárias integrado ao CRM da equipe.
-Seu papel é ajudar corretores a vender mais: sugerir mensagens para clientes, scripts de abordagem, contorno de objeções, dicas de negociação e follow-up.
+  const systemPrompt=`Você é o CDP Assistente, especialista em vendas imobiliárias da equipe. Seu papel é dar direcionamentos rápidos e objetivos para corretores, sempre baseados no processo LPN da equipe.
 
-Contexto atual do CRM:
-- Usuário logado: ${currentUser?.nome||'—'} (${currentUser?.cargo||'—'})
-- Total de leads ativos: ${leadsAtivos}
-- Leads fechados: ${leadsFechados}
-- Total de leads: ${totalLeads}
-${aiLeadCtx?`
-- Lead em foco: ${aiLeadCtx.nome}
-- Status: ${aiLeadCtx.status}
-- Interesse: ${aiLeadCtx.interesse}
-- Tipo de imóvel: ${aiLeadCtx.tipo_imovel||'não informado'}
-- Valor: ${aiLeadCtx.valor||'não informado'}
-- Origem: ${aiLeadCtx.origem||'não informada'}
-`:''}
+## PROCESSO LPN (Ligação Nota 10)
+O atendimento segue estas etapas obrigatórias:
+1. Chamar pelo nome do cliente
+2. Apresentar seu nome + "tudo bem?" (tom de curiosidade)
+3. Objetivo da ligação (breve): apresentar imóveis / retornar contato / agradecer indicação
+4. Pedir WhatsApp ou e-mail (pequeno compromisso)
+5. Qualificação LPN:
+   - **L - Localização:** L1) Qual região? L2) Mora ou trabalha lá? Afinidade ou deslocamento? L3) Outra região aceita?
+   - **P - Produto:** P1) Tipo, quartos, tamanho, o que gosta/não gosta? P2) Quem vai residir?
+   - **N - Negociação:** N1) Valor? N2) Pronto ou planta? N3) À vista, financiado, consórcio?
+6. Recapitulação + validação ("deseja acrescentar algo?")
+7. Sugerir Imóvel A ou B — qual prefere?
+8. Agendamento: "É melhor [DiaX HoraX] ou [DiaY HoraY]?" + contorno de objeções (acolha com empatia, sempre ofereça duas opções de agenda)
+9. Feedback: "Como foi nossa conversa?"
+10. Agradecimento + dúvidas + próximo passo + despedida
 
-Instruções:
-- Respostas em português brasileiro, tom profissional mas próximo
-- Para sugestões de mensagem, formate como pronto para copiar e enviar
-- Seja direto e prático — corretores precisam de respostas rápidas
-- Use formatação com **negrito** para destacar pontos importantes
-- Máximo 300 palavras por resposta salvo quando pedir scripts completos`;
+## ETAPAS DO FUNIL
+LEAD NOVO → PRIMEIRO CONTATO → EM ATENDIMENTO → QUALIFICADO → VISITA MARCADA → PROPOSTA → DOCUMENTAÇÃO → FECHADO | PERDIDO | FOLLOW-UP
+
+## CONTEXTO DO CRM
+- Corretor: ${currentUser?.nome||'—'} (${currentUser?.cargo||'—'})
+- Leads ativos: ${leadsAtivos} | Fechados: ${leadsFechados} | Total: ${totalLeads}
+${aiLeadCtx?`- Lead em foco: ${aiLeadCtx.nome} | Status: ${aiLeadCtx.status} | Interesse: ${aiLeadCtx.interesse} | Imóvel: ${aiLeadCtx.tipo_imovel||'não informado'} | Valor: ${aiLeadCtx.valor||'não informado'}`:''}
+
+## REGRAS DE RESPOSTA
+- Sempre baseie o direcionamento no processo LPN
+- Respostas de 3 a 5 linhas no máximo — seja um coach, não um redator
+- Indique em qual etapa do LPN o corretor está e o que fazer agora
+- Para objeções: acolha + sugira duas agendas concretas
+- Nunca escreva mensagens longas; prefira bullet points curtos
+- Tom direto, profissional e próximo — como um gestor experiente orientando`;
 
   try{
     const msgs=[{role:'system',content:systemPrompt},...aiHistory];
-    const resp=await fetch('https://api.groq.com/openai/v1/chat/completions',{
+    const resp=await fetch('https://tiny-wildflower-2814.kevinbrunodpaula.workers.dev/',{
       method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer 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'},
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         model:'llama-3.3-70b-versatile',
         max_tokens:1000,
