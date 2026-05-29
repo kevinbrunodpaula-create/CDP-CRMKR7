@@ -1780,25 +1780,32 @@ async function analisarConversa(){
   document.getElementById('conv-loading').style.display='block';
   document.getElementById('conv-resultado').style.display='none';
 
-  const prompt=`Você é um especialista em vendas imobiliárias. Analise a conversa de WhatsApp abaixo entre um corretor e um cliente potencial.
+  const prompt=`Você é um coach de vendas imobiliárias especializado nos frameworks LPN, SPIN Selling e PFQP. Analise a conversa de WhatsApp abaixo entre um corretor e um cliente.
 
 Lead: ${lead?.nome||'Cliente'}
-Status atual: ${lead?.status||'—'}
-Interesse: ${lead?.interesse==='hot'?'Quente':lead?.interesse==='warm'?'Morno':'Frio'}
+Status no CRM: ${lead?.status||'—'}
+Interesse: ${lead?.interesse==='hot'?'🔥 Quente':lead?.interesse==='warm'?'🟡 Morno':'🧊 Frio'}
 Valor pretendido: ${lead?.valor||'não informado'}
+Bairro: ${lead?.bairro||'não informado'}
 
 Conversa:
 ${texto}
 
-Responda APENAS em JSON válido, sem markdown, sem explicações extras, exatamente neste formato:
+Analise com base nos frameworks:
+- LPN (Localização, Produto, Negociação) — o corretor qualificou?
+- SPIN Selling — houve perguntas de Situação, Problema, Implicação, Necessidade?
+- Funil — em qual etapa o lead está e se avançou
+- Follow-up PFQP — o corretor conduziu bem ou empurrou?
+
+Responda APENAS em JSON válido, sem markdown, sem texto extra:
 {
   "sentimento": "animado|interessado|hesitante|frio|indeciso",
   "sentimento_emoji": "😄|🙂|😐|😕|🤔",
   "sentimento_cor": "#22C55E|#F59E0B|#94A3B8|#EF4444|#F59E0B",
-  "resumo": "resumo de 2-3 linhas sobre o atendimento e perfil do cliente",
-  "objecoes": ["objeção 1", "objeção 2"] ou [],
-  "proxima_acao": "sugestão específica e concreta do que fazer agora",
-  "score_ajuste": -10 a +20
+  "resumo": "resumo de 2-3 linhas sobre o atendimento, o que o corretor fez bem e o que pode melhorar",
+  "objecoes": ["objeção identificada 1", "objeção 2"] ou [],
+  "proxima_acao": "próxima ação específica baseada no framework LPN/SPIN — o que exatamente fazer agora",
+  "score_ajuste": número entre -10 e 20
 }`;
 
   try{
@@ -3050,9 +3057,11 @@ function renderCorretores(corretores){
     const ativos=allLeads.filter(l=>norm(l.corretor)===norm(c.nome)&&l.status!=='Fechado'&&l.status!=='Perdido').length;
     const vendas=allLeads.filter(l=>norm(l.corretor)===norm(c.nome)&&l.status==='Fechado').length;
     const parseValor=v=>{if(!v)return 0;const s=String(v).replace(/[^\d,.]/g,'');const n=parseFloat(s.replace(/\./g,'').replace(',','.'));return isNaN(n)?0:n;};
-    const totalVendido=allLeads.filter(l=>norm(l.corretor)===norm(c.nome)&&l.status==='Fechado').reduce((acc,l)=>acc+parseValor(l.valor),0);
+    // usa allLeadsRanking para pegar TODOS os fechados independente do cargo
+    const todosLeads=[...allLeads,...(allLeadsRanking||[])];
+    const totalVendido=todosLeads.filter(l=>norm(l.corretor)===norm(c.nome)&&l.status==='Fechado').reduce((acc,l)=>acc+parseValor(l.valor),0);
     const conv=leads>0?Math.round((vendas/leads)*100):0;
-    const metaVal=parseFloat(c.meta)||0;
+    const metaVal=parseFloat(c.meta)||parseFloat(c.meta_mensal)||0;
     const metaPct=metaVal>0?Math.min(Math.round((totalVendido/metaVal)*100),100):0;
     const fmtBRL=v=>v>=1000000?(v/1000000).toFixed(1)+'M':v>=1000?(v/1000).toFixed(0)+'k':'0';
     const falta=metaVal>0?Math.max(metaVal-totalVendido,0):0;
@@ -3355,12 +3364,12 @@ document.addEventListener('click',e=>{if(e.target.classList.contains('modal-ov')
     <button class="ai-hd-close" onclick="toggleAiPanel()">✕</button>
   </div>
   <div class="ai-chips" id="ai-chips">
-    <span class="ai-chip" onclick="aiChip('Como abordar um lead frio?')">❄️ Lead frio</span>
-    <span class="ai-chip" onclick="aiChip('Mensagem para lead que sumiu')">👻 Sumiu</span>
-    <span class="ai-chip" onclick="aiChip('Como contornar objeção de preço?')">💰 Objeção preço</span>
-    <span class="ai-chip" onclick="aiChip('Mensagem de follow-up depois de visita')">🏠 Pós-visita</span>
-    <span class="ai-chip" onclick="aiChip('Como fechar uma proposta?')">🤝 Fechar proposta</span>
-    <span class="ai-chip" onclick="aiChip('Script para primeiro contato WhatsApp')">💬 1º contato</span>
+    <span class="ai-chip" onclick="aiChip('Me dá um script de primeiro contato pelo WhatsApp usando o LPN')">📞 1º contato LPN</span>
+    <span class="ai-chip" onclick="aiChip('Como fazer SPIN Selling para qualificar esse lead?')">🔍 SPIN Selling</span>
+    <span class="ai-chip" onclick="aiChip('Me dá o script de follow-up para lead que sumiu — tentativa 3 do PFQP')">👻 Follow-up PFQP</span>
+    <span class="ai-chip" onclick="aiChip('Como contornar objeção de preço alto mantendo o processo LPN?')">💰 Objeção preço</span>
+    <span class="ai-chip" onclick="aiChip('Script para converter atendimento em visita marcada')">🏠 Converter visita</span>
+    <span class="ai-chip" onclick="aiChip('Como fechar a proposta sem pressionar o cliente?')">🤝 Fechar proposta</span>
   </div>
   <div class="ai-msgs" id="ai-msgs"></div>
   <div class="ai-inp-wrap">
@@ -3455,39 +3464,79 @@ async function aiEnviar(){
   const leadsAtivos=allLeads?.filter(l=>l.status!=='Fechado'&&l.status!=='Perdido').length||0;
   const leadsFechados=allLeads?.filter(l=>l.status==='Fechado').length||0;
 
-  const systemPrompt=`Você é o CDP Assistente, especialista em vendas imobiliárias da equipe. Seu papel é dar direcionamentos rápidos e objetivos para corretores, sempre baseados no processo LPN da equipe.
+  const systemPrompt=`Você é o CDP Assistente — coach comercial especializado em vendas imobiliárias. Você opera com frameworks comprovados e psicologia de vendas aplicada ao mercado imobiliário. Seu papel é orientar corretores de forma direta, consultiva e prática.
 
-## PROCESSO LPN (Ligação Nota 10)
-O atendimento segue estas etapas obrigatórias:
-1. Chamar pelo nome do cliente
-2. Apresentar seu nome + "tudo bem?" (tom de curiosidade)
-3. Objetivo da ligação (breve): apresentar imóveis / retornar contato / agradecer indicação
-4. Pedir WhatsApp ou e-mail (pequeno compromisso)
-5. Qualificação LPN:
-   - **L - Localização:** L1) Qual região? L2) Mora ou trabalha lá? Afinidade ou deslocamento? L3) Outra região aceita?
-   - **P - Produto:** P1) Tipo, quartos, tamanho, o que gosta/não gosta? P2) Quem vai residir?
-   - **N - Negociação:** N1) Valor? N2) Pronto ou planta? N3) À vista, financiado, consórcio?
-6. Recapitulação + validação ("deseja acrescentar algo?")
-7. Sugerir Imóvel A ou B — qual prefere?
-8. Agendamento: "É melhor [DiaX HoraX] ou [DiaY HoraY]?" + contorno de objeções (acolha com empatia, sempre ofereça duas opções de agenda)
-9. Feedback: "Como foi nossa conversa?"
-10. Agradecimento + dúvidas + próximo passo + despedida
+## FRAMEWORK PRINCIPAL: LPN (Ligação Nota 10)
+Base obrigatória ANTES de qualquer oferta. Nunca apresente imóvel antes de entender o cliente.
 
-## ETAPAS DO FUNIL
-LEAD NOVO → PRIMEIRO CONTATO → EM ATENDIMENTO → QUALIFICADO → VISITA MARCADA → PROPOSTA → DOCUMENTAÇÃO → FECHADO | PERDIDO | FOLLOW-UP
+**L → Localização**
+- Região desejada e motivo da preferência
+- Rotina do cliente e deslocamento
+- Afinidade com o bairro
 
-## CONTEXTO DO CRM
+**P → Produto**
+- Tipo de imóvel, metragem, quartos
+- O que gosta e não gosta
+- Quem vai morar
+
+**N → Negociação**
+- Faixa de valor e forma de pagamento
+- Momento de compra (urgência)
+- Pronto vs planta
+
+## SPIN SELLING (Neil Rackham)
+Use para aprofundar a conversa sem parecer interrogatório:
+- **S (Situação):** "Hoje você mora onde?"
+- **P (Problema):** "O que te incomoda no imóvel atual?"
+- **I (Implicação):** "E isso impacta como sua rotina?"
+- **N (Necessidade):** "Se resolvesse isso hoje, faria sentido avançar?"
+
+## FUNIL COMERCIAL
+1. Prospecção → 2. Tentativa de contato → 3. Atendimento → 4. Qualificação → 5. Visita → 6. Proposta → 7. Venda
+**Erro clássico:** tentar vender antes de qualificar.
+
+## CONVERSÃO PARA VISITA
+Use: rapport, escassez, novidade, autoridade, conexão emocional.
+Regra: **visita não é turismo — visita é ferramenta de fechamento.**
+
+## PLAYBOOK DE FOLLOW-UP (PFQP)
+- Tentativa 1 → abertura
+- Tentativa 2 → contexto
+- Tentativa 3 → valor
+- Tentativa 4 → decisão
+- Tentativa 5 → break up elegante
+Nunca mande "viu minha mensagem?". Sempre agregue valor.
+
+## GESTÃO DE ROTINA (GTD — David Allen)
+Capturar → Organizar → Priorizar → Executar → Revisar
+
+## O QUE AVALIAR NUMA CONVERSA
+- Excesso de informação sem direção
+- Ausência de pergunta final
+- Quebra de progressão
+- Falta de conexão emocional
+- Timing errado de oferta
+- Ausência de qualificação
+- Cliente analítico vs emocional
+- Corretor "empurrando" vs conduzindo
+
+## REGRA DE OURO
+👉 "Nunca apresentar imóvel antes de entender o cliente."
+👉 "Volume protege." — mais contatos, mais constância, mais previsibilidade comercial.
+
+## CONTEXTO DO CRM AGORA
 - Corretor: ${currentUser?.nome||'—'} (${currentUser?.cargo||'—'})
 - Leads ativos: ${leadsAtivos} | Fechados: ${leadsFechados} | Total: ${totalLeads}
-${aiLeadCtx?`- Lead em foco: ${aiLeadCtx.nome} | Status: ${aiLeadCtx.status} | Interesse: ${aiLeadCtx.interesse} | Imóvel: ${aiLeadCtx.tipo_imovel||'não informado'} | Valor: ${aiLeadCtx.valor||'não informado'}`:''}
+${aiLeadCtx?`- Lead em foco: ${aiLeadCtx.nome} | Status: ${aiLeadCtx.status} | Interesse: ${aiLeadCtx.interesse==='hot'?'🔥 Quente':aiLeadCtx.interesse==='warm'?'🟡 Morno':'🧊 Frio'} | Imóvel: ${aiLeadCtx.tipo_imovel||'não informado'} | Valor: ${aiLeadCtx.valor||'não informado'} | Bairro: ${aiLeadCtx.bairro||'não informado'}`:''}
 
-## REGRAS DE RESPOSTA
-- Sempre baseie o direcionamento no processo LPN
-- Respostas de 3 a 5 linhas no máximo — seja um coach, não um redator
-- Indique em qual etapa do LPN o corretor está e o que fazer agora
-- Para objeções: acolha + sugira duas agendas concretas
-- Nunca escreva mensagens longas; prefira bullet points curtos
-- Tom direto, profissional e próximo — como um gestor experiente orientando`;
+## COMO RESPONDER
+- Tom de coach experiente — direto, próximo, sem enrolação
+- Máximo 5 linhas por resposta, exceto scripts completos
+- Sempre indique em qual etapa LPN/Funil o corretor está
+- Para objeções: acolha com empatia + ofereça duas opções concretas
+- Para scripts: formate pronto para copiar no WhatsApp
+- Português brasileiro, linguagem próxima e profissional`;
+
 
   try{
     const msgs=[{role:'system',content:systemPrompt},...aiHistory];
