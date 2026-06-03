@@ -1927,8 +1927,9 @@ function parseCSV(text){
 
 function mapearLead(row){
   const get=(...keys)=>{for(const k of keys){const nk=normHeader(k);for(const rk of Object.keys(row)){if(normHeader(rk)===nk&&row[rk])return row[rk];}}return'';};
-  const tel=get('telefone','fone','celular','whatsapp','phone','tel').replace(/^'+/,'').trim();
-  const rendaRaw=get('renda','renda familiar','rendafamiliar','rendamensal','income');
+  const tel=get('telefone','fone','celular','whatsapp','phone','tel').replace(/'+/g,'').trim();
+  const rendaRaw=get('renda','rendafamiliar','renda familiar','rendamensal','renda mensal','income','salario','salário');
+  if(!rendaRaw&&Object.keys(row).length)console.log('[CDP] row keys:',Object.keys(row),'| row sample:',JSON.stringify(row).slice(0,200));
   const renda=rendaRaw.replace(/R\$\s*/i,'').replace(/\./g,'').replace(',','.').trim();
   return{
     nome:get('nome','name','cliente','contato'),
