@@ -1326,6 +1326,7 @@ body{
     </div>
     <div style="display:flex;gap:8px">
       <button class="btn-s" style="flex:1" onclick="closeModal('fila')">Cancelar</button>
+      <button class="btn-s" style="flex:1;border-color:rgba(239,68,68,0.2);color:#FCA5A5;" onclick="limparFila()">🗑 Limpar fila</button>
       <button class="btn-p" style="flex:2;justify-content:center" id="btn-distribuir" onclick="distribuirDaFila()">
         🚀 Distribuir agora
       </button>
@@ -1813,6 +1814,14 @@ let filaLeads=JSON.parse(localStorage.getItem('cdp_fila')||'[]');
 let roundRobinIdx=parseInt(localStorage.getItem('cdp_rr_idx')||'0');
 
 function salvarFila(){localStorage.setItem('cdp_fila',JSON.stringify(filaLeads));}
+
+function limparFila(){
+  if(!confirm('Tem certeza? Isso remove todos os leads aguardando na fila. Leads já distribuídos não serão afetados.'))return;
+  filaLeads=[];
+  salvarFila();
+  closeModal('fila');
+  showToast('🗑 Fila limpa com sucesso!','success');
+}
 
 function abrirFila(){
   filaLeads=JSON.parse(localStorage.getItem('cdp_fila')||'[]');
