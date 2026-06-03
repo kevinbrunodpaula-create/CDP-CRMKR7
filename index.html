@@ -1926,14 +1926,16 @@ function parseCSV(text){
 }
 
 function mapearLead(row){
-  // mapeia variações de nome das colunas
   const get=(...keys)=>{for(const k of keys){const nk=normHeader(k);for(const rk of Object.keys(row)){if(normHeader(rk)===nk&&row[rk])return row[rk];}}return'';};
+  const tel=get('telefone','fone','celular','whatsapp','phone','tel').replace(/^'+/,'').trim();
+  const rendaRaw=get('renda','renda familiar','rendafamiliar','rendamensal','income');
+  const renda=rendaRaw.replace(/R\$\s*/i,'').replace(/\./g,'').replace(',','.').trim();
   return{
     nome:get('nome','name','cliente','contato'),
     email:get('email','e-mail','mail'),
     cpf:get('cpf','documento','doc'),
-    renda_familiar:get('renda','renda familiar','rendafamiliar','income'),
-    telefone:get('telefone','fone','celular','whatsapp','phone','tel'),
+    renda_familiar:renda||null,
+    telefone:tel||null,
   };
 }
 
@@ -1992,8 +1994,8 @@ function mostrarPreview(){
   const stats=document.getElementById('imp-stats');
   const sample=importDados.slice(0,5);
   table.innerHTML=`<table style="width:100%;border-collapse:collapse;font-size:10px">
-    <tr style="background:rgba(255,255,255,0.04)">${['Nome','Email','CPF','Renda'].map(h=>`<th style="padding:6px 8px;text-align:left;color:#475569">${h}</th>`).join('')}</tr>
-    ${sample.map(r=>`<tr style="border-top:1px solid rgba(255,255,255,0.04)">${[r.nome,r.email,r.cpf,r.renda_familiar].map(v=>`<td style="padding:6px 8px;color:#CBD5E1;max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${v||'—'}</td>`).join('')}</tr>`).join('')}
+    <tr style="background:rgba(255,255,255,0.04)">${['Nome','Telefone','CPF','Renda'].map(h=>`<th style="padding:6px 8px;text-align:left;color:#475569">${h}</th>`).join('')}</tr>
+    ${sample.map(r=>`<tr style="border-top:1px solid rgba(255,255,255,0.04)">${[r.nome,r.telefone,r.cpf,r.renda_familiar].map(v=>`<td style="padding:6px 8px;color:#CBD5E1;max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${v||'—'}</td>`).join('')}</tr>`).join('')}
   </table>`;
   const dupls=importDados.filter(r=>r.telefone&&allLeads.some(l=>l.telefone&&l.telefone.replace(/\D/g,'')===r.telefone.replace(/\D/g,''))).length;
   stats.innerHTML=`<span style="color:#22C55E">✅ ${importDados.length} leads encontrados</span>${dupls>0?`<span style="color:#F59E0B;margin-left:10px">⚠ ${dupls} possíveis duplicados</span>`:''}${importDados.length>5?`<span style="color:#475569;margin-left:10px">+${importDados.length-5} não exibidos</span>`:''}`;
