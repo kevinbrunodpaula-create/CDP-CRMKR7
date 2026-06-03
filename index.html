@@ -583,6 +583,118 @@ body{
 /* NOVO ACESSO */
 .lg-err2{background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.2);border-radius:6px;padding:9px 12px;font-size:12px;color:#FCA5A5;margin-bottom:12px;display:none;text-align:center;}
 
+/* CENTRAL DE LIGAÇÕES */
+.discagem-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;}
+.disc-kpis{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.disc-kpi{background:#111827;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:12px 16px;flex:1;min-width:100px;}
+.disc-kpi-val{font-size:20px;font-weight:600;letter-spacing:-0.04em;color:#F8FAFC;line-height:1;margin-bottom:2px;}
+.disc-kpi-lbl{font-size:10px;color:#475569;font-weight:400;}
+.disc-card-ativo{background:#111827;border:1px solid rgba(34,197,94,0.25);border-radius:10px;padding:16px;margin-bottom:12px;position:relative;overflow:hidden;}
+.disc-card-ativo::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#22C55E,#16a34a);}
+.disc-nome{font-size:18px;font-weight:600;letter-spacing:-0.03em;color:#F8FAFC;margin-bottom:4px;}
+.disc-info-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+.disc-badge{font-size:10px;font-weight:500;padding:3px 8px;border-radius:20px;}
+.disc-tel{font-size:15px;font-weight:500;color:#22C55E;letter-spacing:0.02em;}
+.disc-btn-ligar{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#22C55E;color:#fff;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:opacity .15s,transform .1s;letter-spacing:-0.01em;}
+.disc-btn-ligar:hover{opacity:0.88;transform:translateY(-1px);}
+.disc-resultados{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;}
+.disc-res-btn{padding:8px 14px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid;font-family:'Inter',sans-serif;transition:background .15s,transform .1s;}
+.disc-res-btn:hover{transform:translateY(-1px);}
+.disc-res-atendeu{background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);color:#86EFAC;}
+.disc-res-nao{background:rgba(239,68,68,0.08);border-color:rgba(239,68,68,0.2);color:#FCA5A5;}
+.disc-res-ag{background:rgba(99,102,241,0.1);border-color:rgba(99,102,241,0.25);color:#A5B4FC;}
+.disc-res-decl{background:rgba(148,163,184,0.07);border-color:rgba(148,163,184,0.15);color:#64748B;}
+.disc-res-obs{width:100%;margin-top:8px;padding:8px 10px;background:#0d1117;border:1px solid rgba(255,255,255,0.06);border-radius:6px;color:#F8FAFC;font-family:'Inter',sans-serif;font-size:12px;outline:none;resize:none;}
+.disc-res-obs:focus{border-color:rgba(34,197,94,0.35);}
+.disc-fila-wrap{background:#111827;border:1px solid rgba(255,255,255,0.06);border-radius:10px;overflow:hidden;}
+.disc-fila-hd{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:space-between;}
+.disc-fila-hd-txt{font-size:12px;font-weight:500;color:#F8FAFC;}
+.disc-fila-item{display:flex;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid rgba(255,255,255,0.04);cursor:pointer;transition:background .15s;}
+.disc-fila-item:last-child{border-bottom:none;}
+.disc-fila-item:hover{background:rgba(255,255,255,0.02);}
+.disc-fila-item.ativo-row{background:rgba(34,197,94,0.05);border-left:2px solid #22C55E;}
+.disc-fila-num{font-size:11px;font-weight:600;color:#334155;width:20px;flex-shrink:0;text-align:center;}
+.disc-fila-av{width:30px;height:30px;border-radius:7px;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:#94A3B8;flex-shrink:0;}
+.disc-fila-info{flex:1;min-width:0;}
+.disc-fila-nome{font-size:12px;font-weight:500;color:#F8FAFC;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.disc-fila-sub{font-size:10px;color:#475569;margin-top:1px;}
+.disc-fila-score{font-size:11px;font-weight:600;flex-shrink:0;}
+.disc-hist{background:#111827;border:1px solid rgba(255,255,255,0.06);border-radius:10px;margin-top:10px;}
+.disc-hist-hd{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);font-size:12px;font-weight:500;color:#F8FAFC;}
+.disc-hist-item{display:flex;align-items:flex-start;gap:10px;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.04);}
+.disc-hist-item:last-child{border-bottom:none;}
+.disc-hist-dot{width:8px;height:8px;border-radius:50%;margin-top:4px;flex-shrink:0;}
+.disc-hist-txt{font-size:12px;color:#CBD5E1;flex:1;}
+.disc-hist-hora{font-size:10px;color:#334155;flex-shrink:0;}
+.disc-vazia{padding:40px;text-align:center;color:#334155;font-size:13px;}
+.disc-pular{background:transparent;border:1px solid rgba(255,255,255,0.07);border-radius:6px;color:#475569;font-size:11px;padding:6px 12px;cursor:pointer;font-family:'Inter',sans-serif;transition:border-color .15s,color .15s;}
+.disc-pular:hover{border-color:rgba(255,255,255,0.12);color:#94A3B8;}
+.disc-timer{font-size:10px;font-weight:500;color:#475569;background:rgba(255,255,255,0.04);border-radius:20px;padding:3px 10px;display:inline-flex;align-items:center;gap:5px;}
+.disc-timer-dot{width:5px;height:5px;border-radius:50%;background:#22C55E;animation:pulse 1.5s ease infinite;}
+
+/* OFERTA ATIVA */
+.oa-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px;}
+.oa-tabs{display:flex;gap:2px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:3px;}
+.oa-tab{padding:6px 16px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;color:#475569;transition:background .15s,color .15s;border:none;background:transparent;font-family:'Inter',sans-serif;}
+.oa-tab.active{background:#22C55E;color:#fff;}
+.oa-kpis{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.oa-kpi{background:#111827;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:11px 14px;flex:1;min-width:90px;}
+.oa-kpi-val{font-size:18px;font-weight:600;letter-spacing:-0.04em;color:#F8FAFC;line-height:1;margin-bottom:2px;}
+.oa-kpi-lbl{font-size:10px;color:#475569;}
+/* Card prospecto ativo */
+.oa-card-ativo{background:#111827;border:1px solid rgba(245,158,11,0.3);border-radius:10px;padding:16px;margin-bottom:12px;position:relative;overflow:hidden;}
+.oa-card-ativo::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#F59E0B,#D97706);}
+.oa-nome{font-size:17px;font-weight:600;letter-spacing:-0.03em;color:#F8FAFC;margin-bottom:4px;}
+.oa-tel{font-size:14px;font-weight:500;color:#FCD34D;letter-spacing:.02em;}
+.oa-btn-ligar{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:#F59E0B;color:#000;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;transition:opacity .15s,transform .1s;letter-spacing:-.01em;}
+.oa-btn-ligar:hover{opacity:.88;transform:translateY(-1px);}
+/* Ações Oferta Ativa */
+.oa-acoes{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+.oa-btn-ativar{padding:10px 18px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid rgba(34,197,94,0.4);background:rgba(34,197,94,0.12);color:#86EFAC;font-family:'Inter',sans-serif;transition:background .15s,transform .1s;display:flex;align-items:center;gap:6px;}
+.oa-btn-ativar:hover{background:rgba(34,197,94,0.2);transform:translateY(-1px);}
+.oa-btn-descartar{padding:10px 18px;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid rgba(239,68,68,0.2);background:rgba(239,68,68,0.07);color:#FCA5A5;font-family:'Inter',sans-serif;transition:background .15s,transform .1s;display:flex;align-items:center;gap:6px;}
+.oa-btn-descartar:hover{background:rgba(239,68,68,0.12);transform:translateY(-1px);}
+.oa-btn-pular-oa{padding:10px 14px;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid rgba(255,255,255,0.07);background:transparent;color:#475569;font-family:'Inter',sans-serif;transition:border-color .15s,color .15s;}
+.oa-btn-pular-oa:hover{border-color:rgba(255,255,255,0.12);color:#94A3B8;}
+/* Lista Oferta Ativa */
+.oa-lista-wrap{background:#111827;border:1px solid rgba(255,255,255,0.06);border-radius:10px;overflow:hidden;}
+.oa-lista-hd{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.oa-lista-hd-txt{font-size:12px;font-weight:500;color:#F8FAFC;}
+.oa-item{display:flex;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid rgba(255,255,255,0.04);transition:background .15s;}
+.oa-item:last-child{border-bottom:none;}
+.oa-item:hover{background:rgba(255,255,255,0.02);}
+.oa-item.oa-ativo-row{background:rgba(245,158,11,0.05);border-left:2px solid #F59E0B;}
+.oa-item-av{width:30px;height:30px;border-radius:7px;background:rgba(245,158,11,0.08);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:#FCD34D;flex-shrink:0;}
+.oa-item-info{flex:1;min-width:0;}
+.oa-item-nome{font-size:12px;font-weight:500;color:#F8FAFC;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.oa-item-sub{font-size:10px;color:#475569;margin-top:1px;}
+.oa-item-actions{display:flex;gap:5px;flex-shrink:0;}
+.oa-mini-btn{padding:4px 8px;border-radius:5px;font-size:10px;font-weight:500;cursor:pointer;border:1px solid;font-family:'Inter',sans-serif;transition:background .15s;}
+.oa-mini-ativar{background:rgba(34,197,94,0.08);border-color:rgba(34,197,94,0.25);color:#86EFAC;}
+.oa-mini-ativar:hover{background:rgba(34,197,94,0.15);}
+.oa-mini-descartar{background:rgba(239,68,68,0.06);border-color:rgba(239,68,68,0.18);color:#FCA5A5;}
+.oa-mini-descartar:hover{background:rgba(239,68,68,0.12);}
+.oa-mini-ligar{background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.25);color:#FCD34D;}
+.oa-mini-ligar:hover{background:rgba(245,158,11,0.15);}
+/* Descartados */
+.oa-desc-item{display:flex;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.04);}
+.oa-desc-item:last-child{border-bottom:none;}
+.oa-desc-av{width:26px;height:26px;border-radius:6px;background:rgba(148,163,184,0.07);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;color:#475569;flex-shrink:0;}
+.oa-desc-info{flex:1;min-width:0;}
+.oa-desc-nome{font-size:11px;font-weight:500;color:#475569;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.oa-desc-sub{font-size:10px;color:#334155;margin-top:1px;}
+.oa-btn-restaurar{padding:3px 8px;border-radius:5px;font-size:10px;font-weight:500;cursor:pointer;border:1px solid rgba(99,102,241,0.2);background:rgba(99,102,241,0.07);color:#A5B4FC;font-family:'Inter',sans-serif;}
+.oa-btn-restaurar:hover{background:rgba(99,102,241,0.13);}
+/* Importar na OA */
+.oa-import-area{border:1.5px dashed rgba(245,158,11,0.2);border-radius:8px;padding:20px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s;margin-bottom:12px;}
+.oa-import-area:hover{border-color:rgba(245,158,11,0.4);background:rgba(245,158,11,0.03);}
+.oa-obs-input{width:100%;margin-top:10px;padding:8px 10px;background:#0d1117;border:1px solid rgba(255,255,255,0.06);border-radius:6px;color:#F8FAFC;font-family:'Inter',sans-serif;font-size:12px;outline:none;resize:none;}
+.oa-obs-input:focus{border-color:rgba(245,158,11,0.35);}
+/* Aba resultados OA */
+.oa-ativados-item{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.04);}
+.oa-ativados-item:last-child{border-bottom:none;}
+.oa-ativados-dot{width:7px;height:7px;border-radius:50%;background:#22C55E;flex-shrink:0;}
+
 /* RESPONSIVO */
 @media(max-width:768px){
   .sidebar{transform:translateX(-100%);z-index:200;box-shadow:4px 0 32px rgba(0,0,0,0.6);}
@@ -968,6 +1080,135 @@ body{
       </div>
     </div>
 
+    <!-- CENTRAL DE LIGAÇÕES -->
+    <div class="page" id="page-ligacoes">
+      <div class="discagem-header">
+        <div>
+          <div style="font-size:15px;font-weight:600;letter-spacing:-0.02em">Central de Ligações</div>
+          <div style="font-size:11px;color:#475569;margin-top:2px">Fila ordenada por prioridade de score</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <select class="fsel" id="disc-filter-corr" onchange="renderDiscagem()"><option value="">Meus leads</option></select>
+          <button class="btn-p" onclick="reiniciarSessaoDisc()" style="background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.2);color:#86EFAC;font-size:11px">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+            Nova sessão
+          </button>
+        </div>
+      </div>
+
+      <div class="disc-kpis">
+        <div class="disc-kpi"><div class="disc-kpi-val" id="disc-k-total">0</div><div class="disc-kpi-lbl">Na fila</div></div>
+        <div class="disc-kpi"><div class="disc-kpi-val" style="color:#22C55E" id="disc-k-atendeu">0</div><div class="disc-kpi-lbl">Atenderam</div></div>
+        <div class="disc-kpi"><div class="disc-kpi-val" style="color:#EF4444" id="disc-k-nao">0</div><div class="disc-kpi-lbl">Não atenderam</div></div>
+        <div class="disc-kpi"><div class="disc-kpi-val" style="color:#A5B4FC" id="disc-k-ag">0</div><div class="disc-kpi-lbl">Agendados</div></div>
+        <div class="disc-kpi"><div class="disc-kpi-val" style="color:#F59E0B" id="disc-k-taxa">0%</div><div class="disc-kpi-lbl">Taxa de contato</div></div>
+      </div>
+
+      <div style="display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap">
+        <div style="flex:1.4;min-width:280px">
+          <div id="disc-lead-ativo"></div>
+          <div class="disc-hist" id="disc-historico-wrap" style="display:none">
+            <div class="disc-hist-hd">Histórico desta sessão</div>
+            <div id="disc-historico-lista"></div>
+          </div>
+        </div>
+        <div style="flex:1;min-width:260px">
+          <div class="disc-fila-wrap">
+            <div class="disc-fila-hd">
+              <span class="disc-fila-hd-txt">Fila de ligações</span>
+              <span id="disc-fila-count" style="font-size:10px;color:#475569">0 leads</span>
+            </div>
+            <div id="disc-fila-lista"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OFERTA ATIVA -->
+    <div class="page" id="page-oferta-ativa">
+      <div class="oa-header">
+        <div>
+          <div style="font-size:15px;font-weight:600;letter-spacing:-0.02em">⚡ Oferta Ativa</div>
+          <div style="font-size:11px;color:#475569;margin-top:2px">Prospecção direta — ligue, ative ou descarte</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <div class="oa-tabs">
+            <button class="oa-tab active" id="oa-tab-fila" onclick="oaMudarAba('fila')">Fila</button>
+            <button class="oa-tab" id="oa-tab-descartados" onclick="oaMudarAba('descartados')">Descartados</button>
+            <button class="oa-tab" id="oa-tab-ativados" onclick="oaMudarAba('ativados')">Ativados</button>
+          </div>
+          <button class="btn-p" onclick="oaAbrirImportar()" style="font-size:11px;background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.3);color:#FCD34D">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Importar lista
+          </button>
+          <button class="btn-p" onclick="oaAbrirAddManual()" style="font-size:11px">
+            + Adicionar
+          </button>
+        </div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="oa-kpis">
+        <div class="oa-kpi"><div class="oa-kpi-val" id="oa-k-fila" style="color:#FCD34D">0</div><div class="oa-kpi-lbl">Na fila</div></div>
+        <div class="oa-kpi"><div class="oa-kpi-val" id="oa-k-ativados" style="color:#22C55E">0</div><div class="oa-kpi-lbl">Ativados</div></div>
+        <div class="oa-kpi"><div class="oa-kpi-val" id="oa-k-descartados" style="color:#EF4444">0</div><div class="oa-kpi-lbl">Descartados</div></div>
+        <div class="oa-kpi"><div class="oa-kpi-val" id="oa-k-taxa" style="color:#F59E0B">0%</div><div class="oa-kpi-lbl">Taxa de ativação</div></div>
+        <div class="oa-kpi"><div class="oa-kpi-val" id="oa-k-ligados">0</div><div class="oa-kpi-lbl">Ligações hoje</div></div>
+      </div>
+
+      <!-- Aba: Fila -->
+      <div id="oa-aba-fila">
+        <div style="display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap">
+          <!-- Card prospecto em discagem -->
+          <div style="flex:1.4;min-width:280px">
+            <div id="oa-prospecto-ativo"></div>
+            <div class="disc-hist" id="oa-hist-wrap" style="display:none;margin-top:10px">
+              <div class="disc-hist-hd">Histórico desta sessão</div>
+              <div id="oa-hist-lista"></div>
+            </div>
+          </div>
+          <!-- Lista da fila -->
+          <div style="flex:1;min-width:260px">
+            <div class="oa-lista-wrap">
+              <div class="oa-lista-hd">
+                <span class="oa-lista-hd-txt">Prospectos na fila</span>
+                <div style="display:flex;align-items:center;gap:8px">
+                  <input type="text" class="s-inp" id="oa-search" placeholder="Buscar..." oninput="renderOA()" style="width:120px;height:26px;font-size:11px">
+                  <span id="oa-fila-count" style="font-size:10px;color:#475569">0</span>
+                </div>
+              </div>
+              <div id="oa-lista-fila" style="max-height:500px;overflow-y:auto"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aba: Descartados -->
+      <div id="oa-aba-descartados" style="display:none">
+        <div class="oa-lista-wrap">
+          <div class="oa-lista-hd">
+            <span class="oa-lista-hd-txt">Prospectos descartados</span>
+            <span id="oa-desc-count" style="font-size:10px;color:#475569">0</span>
+          </div>
+          <div style="background:rgba(99,102,241,0.05);border-bottom:1px solid rgba(99,102,241,0.1);padding:10px 16px;font-size:11px;color:#A5B4FC">
+            💡 Descartados voltam para a fila ao clicar em <strong>Restaurar</strong>. Leads ativados não aparecem aqui.
+          </div>
+          <div id="oa-lista-descartados" style="max-height:600px;overflow-y:auto"></div>
+        </div>
+      </div>
+
+      <!-- Aba: Ativados -->
+      <div id="oa-aba-ativados" style="display:none">
+        <div class="oa-lista-wrap">
+          <div class="oa-lista-hd">
+            <span class="oa-lista-hd-txt">Leads ativados — foram para o CRM</span>
+            <span id="oa-atv-count" style="font-size:10px;color:#22C55E">0</span>
+          </div>
+          <div id="oa-lista-ativados" style="max-height:600px;overflow-y:auto"></div>
+        </div>
+      </div>
+    </div>
+
   </main>
 </div>
 
@@ -1124,6 +1365,89 @@ body{
       </button>
       <button id="btn-salvar-conv" class="btn-p" style="flex:2;justify-content:center;display:none;background:rgba(34,197,94,0.12);border-color:rgba(34,197,94,0.25);color:#86EFAC" onclick="salvarConversa()">
         💾 Salvar no histórico
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL OFERTA ATIVA — ADICIONAR MANUALMENTE -->
+<div class="modal-ov" id="modal-oa-add">
+  <div class="modal" style="max-width:420px">
+    <div class="mhd"><div class="mtitle">⚡ Adicionar à Oferta Ativa</div><div class="mclose" onclick="closeModal('oa-add')">✕</div></div>
+    <div class="fgm"><label class="flm">Nome <span style="color:#EF4444">*</span></label><input class="fim" id="oa-add-nome" placeholder="Maria da Silva"></div>
+    <div class="fgm"><label class="flm">Telefone <span style="color:#EF4444">*</span></label><input class="fim" id="oa-add-tel" placeholder="(11) 99999-9999" type="tel"></div>
+    <div class="fgm"><label class="flm">E-mail</label><input class="fim" id="oa-add-email" placeholder="maria@email.com" type="email"></div>
+    <div class="fgm"><label class="flm">Observação</label><textarea class="fim" id="oa-add-obs" rows="2" placeholder="Ex.: Indicação do João, mora no Batel..." style="resize:none"></textarea></div>
+    <div style="background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.12);border-radius:7px;padding:10px 12px;font-size:11px;color:#FCD34D;margin-bottom:14px">
+      ⚡ Este contato ficará em <strong>Oferta Ativa</strong> até você ligar e decidir: <strong>Ativar</strong> (vira lead no CRM) ou <strong>Descartar</strong> (volta para a fila depois).
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="btn-s" style="flex:1" onclick="closeModal('oa-add')">Cancelar</button>
+      <button class="btn-p" style="flex:2;justify-content:center;background:#F59E0B;border-color:#D97706" onclick="oaSalvarAdd()">Adicionar à fila</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL OFERTA ATIVA — IMPORTAR CSV -->
+<div class="modal-ov" id="modal-oa-importar">
+  <div class="modal" style="max-width:500px">
+    <div class="mhd"><div class="mtitle">📥 Importar Lista — Oferta Ativa</div><div class="mclose" onclick="closeModal('oa-importar')">✕</div></div>
+    <div style="background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.12);border-radius:8px;padding:12px;margin-bottom:14px;font-size:11px;color:#FCD34D;line-height:1.8">
+      📋 Aceita <strong>CSV ou Google Sheets</strong><br>
+      Colunas esperadas: <strong>Nome, Telefone</strong> (e-mail e obs são opcionais)<br>
+      Os contatos ficam em Oferta Ativa — <strong>não entram no CRM ainda</strong>.
+    </div>
+    <div class="fgm">
+      <label class="flm">Arquivo CSV</label>
+      <input type="file" id="oa-imp-file" accept=".csv" onchange="oaPreviewImport(this)" style="display:none">
+      <button onclick="document.getElementById('oa-imp-file').click()" style="width:100%;padding:10px;background:rgba(245,158,11,0.04);border:1.5px dashed rgba(245,158,11,0.2);border-radius:7px;color:#FCD34D;font-size:11px;cursor:pointer;font-family:'Inter',sans-serif">
+        📂 Escolher arquivo CSV
+      </button>
+    </div>
+    <div style="text-align:center;color:#334155;font-size:11px;margin:8px 0">— ou —</div>
+    <div class="fgm">
+      <label class="flm">Link do Google Sheets (público)</label>
+      <div style="display:flex;gap:6px">
+        <input class="fim" id="oa-imp-sheets" placeholder="https://docs.google.com/spreadsheets/d/..." type="url" style="flex:1">
+        <button class="btn-p" style="white-space:nowrap;padding:0 12px;background:#F59E0B;border-color:#D97706;color:#000" onclick="oaBuscarSheets()">Buscar</button>
+      </div>
+    </div>
+    <div id="oa-imp-preview" style="display:none;margin-bottom:12px">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Preview</div>
+      <div id="oa-imp-preview-table" style="max-height:140px;overflow-y:auto;border:1px solid rgba(255,255,255,0.06);border-radius:7px;font-size:11px"></div>
+      <div id="oa-imp-stats" style="font-size:11px;color:#94A3B8;margin-top:6px"></div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="btn-s" style="flex:1" onclick="closeModal('oa-importar')">Cancelar</button>
+      <button class="btn-p" style="flex:2;justify-content:center;background:#F59E0B;border-color:#D97706;color:#000" id="btn-oa-importar" onclick="oaEnviarImport()" disabled>
+        ⚡ Enviar para Oferta Ativa
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL OFERTA ATIVA — ATIVAR (enriquecer antes de criar lead) -->
+<div class="modal-ov" id="modal-oa-ativar">
+  <div class="modal" style="max-width:480px">
+    <div class="mhd"><div class="mtitle">✅ Ativar como Lead</div><div class="mclose" onclick="closeModal('oa-ativar')">✕</div></div>
+    <input type="hidden" id="oa-ativar-id">
+    <div id="oa-ativar-info" style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.12);border-radius:8px;padding:12px;margin-bottom:16px;font-size:12px;color:#86EFAC;"></div>
+    <div style="font-size:11px;color:#94A3B8;margin-bottom:12px">Preencha o que souber — o restante pode ser completado depois no CRM.</div>
+    <div class="fr">
+      <div class="fgm"><label class="flm">Tipo de imóvel</label><select class="fsm" id="oa-atv-tipo"><option value="">Não definido</option><option>Apartamento</option><option>Casa</option><option>Kitnet</option><option>Terreno</option><option>Comercial</option></select></div>
+      <div class="fgm"><label class="flm">Valor pretendido</label><input class="fim" placeholder="R$ 350.000" id="oa-atv-valor"></div>
+    </div>
+    <div class="fr">
+      <div class="fgm"><label class="flm">Bairro desejado</label><input class="fim" placeholder="Centro, Batel..." id="oa-atv-bairro"></div>
+      <div class="fgm"><label class="flm">Interesse</label><select class="fsm" id="oa-atv-int"><option value="hot">🔥 Quente</option><option value="warm" selected>🟡 Morno</option><option value="cold">🧊 Frio</option></select></div>
+    </div>
+    <div class="fgm"><label class="flm">Origem</label><select class="fsm" id="oa-atv-origem"><option>Oferta Ativa</option><option>Indicação</option><option>Instagram</option><option>Facebook</option><option>Google</option><option>WhatsApp</option><option>Outro</option></select></div>
+    <div class="fgm"><label class="flm">Observação inicial</label><textarea class="fim" id="oa-atv-obs" rows="2" placeholder="O que o cliente disse na ligação..." style="resize:none"></textarea></div>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button class="btn-s" style="flex:1" onclick="closeModal('oa-ativar')">Cancelar</button>
+      <button class="btn-p" style="flex:2;justify-content:center" id="btn-oa-confirmar-ativar" onclick="oaConfirmarAtivar()">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Ativar — criar lead
       </button>
     </div>
   </div>
@@ -2355,6 +2679,8 @@ function setupUI(){
   h+=`<div class="nav-sep"></div><div class="nav-sec"><span class="nav-sec-label">Gestão</span></div><div class="nav-item" onclick="goTo('agenda',this)"><span class="nav-ic">${ic.ag}</span><span class="nav-label">Agenda</span></div>`;
   if(perm('verRelatorio'))h+=`<div class="nav-item" onclick="goTo('relatorios',this)"><span class="nav-ic">${ic.rel}</span><span class="nav-label">Relatórios</span></div>`;
   if(['CEO','Diretor'].includes(currentUser.cargo))h+=`<div class="nav-item" onclick="goTo('comissoes',this)"><span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v2m0 8v2M9 9h4a2 2 0 010 4H9a2 2 0 000 4h5"/></svg></span><span class="nav-label">Comissões</span></div>`;
+  h+=`<div class="nav-item" onclick="goTo('ligacoes',this);renderDiscagem()"><span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span><span class="nav-label">Ligações</span></div>`;
+  h+=`<div class="nav-item" onclick="goTo('oferta-ativa',this);renderOA()" style="position:relative"><span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><span class="nav-label">Oferta Ativa</span>${(()=>{const d=JSON.parse(localStorage.getItem('cdp_oa_fila')||'[]');return d.length>0?`<span class="nav-badge" style="background:rgba(245,158,11,0.15);color:#FCD34D;border:1px solid rgba(245,158,11,0.2)">${d.length}</span>`:''})()}</div>`;
   // Exportar/Importar CSV para gestores
   if(perm('verTodos'))h+=`<div class="nav-item" onclick="exportarCSV('leads')"><span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span><span class="nav-label">Exportar CSV</span></div>`;
   if(perm('verTodos'))h+=`<div class="nav-item" onclick="abrirImportar()"><span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="3" x2="12" y2="15"/></svg></span><span class="nav-label">Importar Lista</span></div>`;
@@ -3878,8 +4204,607 @@ ${aiLeadCtx?`- Lead em foco: ${aiLeadCtx.nome} | Status: ${aiLeadCtx.status} | I
   document.getElementById('ai-inp').focus();
 }
 
-// Abre o chat já com contexto de um lead específico
-function abrirAiComLead(leadId){
+/* ── CENTRAL DE LIGAÇÕES ── */
+let discSessao={atendeu:0,nao:0,ag:0,decl:0,hist:[]};
+let discFilaAtual=[];
+let discIdxAtual=0;
+let discTimerInterval=null;
+let discTimerSeg=0;
+
+function reiniciarSessaoDisc(){
+  discSessao={atendeu:0,nao:0,ag:0,decl:0,hist:[]};
+  discIdxAtual=0;
+  renderDiscagem();
+}
+
+function renderDiscagem(){
+  if(!allLeads)return;
+  const corr=document.getElementById('disc-filter-corr');
+  if(corr){
+    const atual=corr.value;
+    corr.innerHTML='<option value="">Meus leads</option>';
+    if(perm('verTodos')){
+      const nomes=[...new Set(allLeads.map(l=>l.corretor).filter(Boolean))].sort();
+      nomes.forEach(n=>{const o=document.createElement('option');o.value=n;o.textContent=n;if(n===atual)o.selected=true;corr.appendChild(o);});
+    }
+  }
+  const filtroCorr=document.getElementById('disc-filter-corr')?.value;
+  let leads=allLeads.filter(l=>l.status!=='Fechado'&&l.status!=='Perdido'&&l.telefone);
+  if(filtroCorr)leads=leads.filter(l=>l.corretor===filtroCorr);
+  else if(!perm('verTodos'))leads=leads.filter(l=>l.corretor===currentUser.nome);
+  // ordena por score desc
+  discFilaAtual=[...leads].sort((a,b)=>calcLeadScore(b)-calcLeadScore(a));
+  // remove já feitos nesta sessão
+  const feitosIds=discSessao.hist.map(h=>h.id);
+  const filaRestante=discFilaAtual.filter(l=>!feitosIds.includes(l.id));
+  document.getElementById('disc-k-total').textContent=filaRestante.length;
+  document.getElementById('disc-k-atendeu').textContent=discSessao.atendeu;
+  document.getElementById('disc-k-nao').textContent=discSessao.nao;
+  document.getElementById('disc-k-ag').textContent=discSessao.ag;
+  const total=discSessao.atendeu+discSessao.nao+discSessao.ag+discSessao.decl;
+  const taxa=total>0?Math.round(((discSessao.atendeu+discSessao.ag)/total)*100):0;
+  document.getElementById('disc-k-taxa').textContent=taxa+'%';
+  document.getElementById('disc-fila-count').textContent=filaRestante.length+' leads';
+  // render fila
+  const filaEl=document.getElementById('disc-fila-lista');
+  if(!filaRestante.length){filaEl.innerHTML='<div class="disc-vazia">🎉 Fila concluída!<br><span style="font-size:11px">Todos os leads foram contatados.</span></div>';}
+  else{
+    filaEl.innerHTML=filaRestante.slice(0,20).map((l,i)=>{
+      const score=calcLeadScore(l);const{cls}=getScoreInfo(score);
+      const isAtivo=i===0&&!document.getElementById('disc-lead-ativo')?.dataset.id;
+      return`<div class="disc-fila-item${isAtivo?' ativo-row':''}" onclick="discSelecionarLead('${l.id}')">
+        <div class="disc-fila-num">${i+1}</div>
+        <div class="disc-fila-av">${l.nome.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase()}</div>
+        <div class="disc-fila-info">
+          <div class="disc-fila-nome">${l.nome}</div>
+          <div class="disc-fila-sub">${l.status} · ${l.telefone}</div>
+        </div>
+        <span class="k-score ${cls} disc-fila-score">${score}</span>
+      </div>`;
+    }).join('')+(filaRestante.length>20?`<div style="padding:10px;text-align:center;font-size:10px;color:#334155">+${filaRestante.length-20} mais na fila</div>`:'');
+  }
+  // render lead ativo (primeiro da fila)
+  if(filaRestante.length>0){
+    discMostrarLeadAtivo(filaRestante[0]);
+  } else {
+    document.getElementById('disc-lead-ativo').innerHTML='<div class="disc-vazia" style="background:#111827;border:1px solid rgba(255,255,255,0.06);border-radius:10px">🎉 Nenhum lead na fila!<br><span style="font-size:11px;color:#334155">Adicione leads ou mude o filtro.</span></div>';
+  }
+  // render histórico
+  renderDiscHistorico();
+}
+
+function discSelecionarLead(id){
+  const l=allLeads.find(x=>x.id===id);
+  if(l)discMostrarLeadAtivo(l);
+}
+
+function discMostrarLeadAtivo(lead){
+  const el=document.getElementById('disc-lead-ativo');
+  el.dataset.id=lead.id;
+  const score=calcLeadScore(lead);const{cls,label}=getScoreInfo(score);
+  const intLabel=lead.interesse==='hot'?'🔥 Quente':lead.interesse==='warm'?'🟡 Morno':'🧊 Frio';
+  const intCor=lead.interesse==='hot'?'rgba(239,68,68,0.1)':lead.interesse==='warm'?'rgba(245,158,11,0.1)':'rgba(148,163,184,0.08)';
+  const intBorder=lead.interesse==='hot'?'rgba(239,68,68,0.25)':lead.interesse==='warm'?'rgba(245,158,11,0.25)':'rgba(148,163,184,0.15)';
+  const intTxt=lead.interesse==='hot'?'#FCA5A5':lead.interesse==='warm'?'#FCD34D':'#94A3B8';
+  el.innerHTML=`
+    <div class="disc-card-ativo">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px">
+        <div>
+          <div class="disc-nome">${lead.nome}</div>
+          <a href="tel:${(lead.telefone||'').replace(/\D/g,'')}" class="disc-tel">${lead.telefone||'Sem telefone'}</a>
+        </div>
+        <span class="k-score ${cls}" style="font-size:13px;padding:4px 10px">${label}</span>
+      </div>
+      <div class="disc-info-row">
+        <span class="disc-badge" style="background:${intCor};border:1px solid ${intBorder};color:${intTxt}">${intLabel}</span>
+        <span class="disc-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);color:#94A3B8">${lead.status}</span>
+        ${lead.tipo_imovel?`<span class="disc-badge" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);color:#64748B">${lead.tipo_imovel}</span>`:''}
+        ${lead.valor?`<span style="font-size:11px;color:#475569">${lead.valor}</span>`:''}
+      </div>
+      ${lead.telefone?`<a href="tel:${lead.telefone.replace(/\D/g,'')}" class="disc-btn-ligar" id="disc-btn-ligar-main" onclick="discIniciarTimer()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Ligar agora
+      </a>`:`<div style="font-size:12px;color:#475569;padding:8px 0">⚠️ Lead sem telefone cadastrado.</div>`}
+      <div id="disc-timer-el" style="display:none;margin-top:10px"><span class="disc-timer"><span class="disc-timer-dot"></span><span id="disc-timer-txt">00:00</span> em ligação</span></div>
+      <div class="disc-resultados">
+        <div style="width:100%;font-size:10px;font-weight:500;color:#334155;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px">Registrar resultado:</div>
+        <button class="disc-res-btn disc-res-atendeu" onclick="discRegistrarResultado('${lead.id}','atendeu')">✅ Atendeu</button>
+        <button class="disc-res-btn disc-res-nao" onclick="discRegistrarResultado('${lead.id}','nao')">📵 Não atendeu</button>
+        <button class="disc-res-btn disc-res-ag" onclick="discRegistrarResultado('${lead.id}','agendou')">📅 Agendou visita</button>
+        <button class="disc-res-btn disc-res-decl" onclick="discRegistrarResultado('${lead.id}','declinado')">🚫 Declinado</button>
+        <textarea class="disc-res-obs" id="disc-obs-${lead.id}" placeholder="Observação opcional..." rows="2"></textarea>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:12px;align-items:center">
+        <button class="disc-pular" onclick="discPularLead('${lead.id}')">Pular →</button>
+        <button class="disc-pular" onclick="showDetail('${lead.id}')" style="border-color:rgba(99,102,241,0.2);color:#A5B4FC">Ver detalhes</button>
+        ${lead.telefone?`<a href="https://wa.me/55${lead.telefone.replace(/\D/g,'')}" target="_blank" class="disc-pular" style="border-color:rgba(34,197,94,0.2);color:#86EFAC;text-decoration:none">WhatsApp</a>`:''}
+      </div>
+    </div>`;
+}
+
+function discIniciarTimer(){
+  const el=document.getElementById('disc-timer-el');
+  if(el)el.style.display='flex';
+  if(discTimerInterval)clearInterval(discTimerInterval);
+  discTimerSeg=0;
+  discTimerInterval=setInterval(()=>{
+    discTimerSeg++;
+    const m=String(Math.floor(discTimerSeg/60)).padStart(2,'0');
+    const s=String(discTimerSeg%60).padStart(2,'0');
+    const t=document.getElementById('disc-timer-txt');
+    if(t)t.textContent=m+':'+s;
+  },1000);
+}
+
+function discPararTimer(){
+  if(discTimerInterval){clearInterval(discTimerInterval);discTimerInterval=null;}
+  const el=document.getElementById('disc-timer-el');
+  if(el)el.style.display='none';
+  discTimerSeg=0;
+}
+
+async function discRegistrarResultado(leadId,resultado){
+  if(discTimerInterval)discPararTimer();
+  const lead=allLeads.find(l=>l.id===leadId);
+  if(!lead)return;
+  const obs=document.getElementById('disc-obs-'+leadId)?.value?.trim()||'';
+  const agora=new Date().toISOString();
+  const resMap={atendeu:'✅ Atendeu',nao:'📵 Não atendeu',agendou:'📅 Agendou visita',declinado:'🚫 Declinado'};
+  const resLabel=resMap[resultado]||resultado;
+
+  // atualiza histórico do CRM
+  const histAtual=lead.historico_contatos?JSON.parse(lead.historico_contatos):[];
+  histAtual.unshift({data:agora,obs:`📞 Ligação — ${resLabel}${obs?': '+obs:''}`,autor:currentUser.nome});
+  let novoStatus=lead.status;
+  if(resultado==='atendeu'&&lead.status==='Lead Novo')novoStatus='Primeiro Contato';
+  if(resultado==='agendou')novoStatus='Visita Marcada';
+  if(resultado==='declinado')novoStatus='Perdido';
+  try{
+    await SB.upd('leads',{
+      ultimo_contato:agora,
+      historico_contatos:JSON.stringify(histAtual),
+      ...(novoStatus!==lead.status?{status:novoStatus}:{}),
+    },`id=eq.${leadId}`);
+    // atualiza contagem da sessão
+    if(resultado==='atendeu')discSessao.atendeu++;
+    else if(resultado==='nao')discSessao.nao++;
+    else if(resultado==='agendou')discSessao.ag++;
+    else discSessao.decl++;
+    discSessao.hist.push({id:leadId,nome:lead.nome,resultado,obs,hora:new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})});
+    await loadAll();
+    renderDiscagem();
+    showToast(`${resLabel} — ${lead.nome.split(' ')[0]}`,'success');
+  }catch(e){showToast('Erro ao salvar: '+e.message,'error');}
+}
+
+function discPularLead(leadId){
+  discSessao.hist.push({id:leadId,nome:(allLeads.find(l=>l.id===leadId)?.nome||'—'),resultado:'pulado',obs:'',hora:new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})});
+  renderDiscagem();
+}
+
+function renderDiscHistorico(){
+  const wrap=document.getElementById('disc-historico-wrap');
+  const lista=document.getElementById('disc-historico-lista');
+  if(!wrap||!lista)return;
+  if(!discSessao.hist.length){wrap.style.display='none';return;}
+  wrap.style.display='block';
+  const cores={atendeu:'#22C55E',nao:'#EF4444',agendou:'#A5B4FC',declinado:'#64748B',pulado:'#334155'};
+  lista.innerHTML=[...discSessao.hist].reverse().map(h=>`
+    <div class="disc-hist-item">
+      <div class="disc-hist-dot" style="background:${cores[h.resultado]||'#334155'}"></div>
+      <div class="disc-hist-txt"><strong style="color:#CBD5E1">${h.nome}</strong> — ${h.resultado==='atendeu'?'✅ Atendeu':h.resultado==='nao'?'📵 Não atendeu':h.resultado==='agendou'?'📅 Agendou':h.resultado==='declinado'?'🚫 Declinado':'⏭ Pulado'}${h.obs?`<br><span style="color:#475569;font-size:10px">${h.obs}</span>`:''}</div>
+      <div class="disc-hist-hora">${h.hora}</div>
+    </div>`).join('');
+}
+
+// Abre central de ligações já com um lead selecionado
+function abrirDiscagemComLead(leadId){
+  goTo('ligacoes',document.querySelector('.nav-item[onclick*="ligacoes"]'));
+  renderDiscagem();
+  setTimeout(()=>discSelecionarLead(leadId),200);
+}
+
+/* ══════════════════════════════════════════
+   OFERTA ATIVA
+   Storage keys (localStorage por usuário):
+   cdp_oa_fila      — array de prospectos na fila
+   cdp_oa_desc      — descartados
+   cdp_oa_atv       — ativados (histórico)
+   cdp_oa_sess      — contadores da sessão atual
+══════════════════════════════════════════ */
+
+const OA_FILA_KEY  = ()=>`cdp_oa_fila_${currentUser?.id||'x'}`;
+const OA_DESC_KEY  = ()=>`cdp_oa_desc_${currentUser?.id||'x'}`;
+const OA_ATV_KEY   = ()=>`cdp_oa_atv_${currentUser?.id||'x'}`;
+const OA_SESS_KEY  = ()=>`cdp_oa_sess_${currentUser?.id||'x'}`;
+
+function oaLoad(key){try{return JSON.parse(localStorage.getItem(key())||'[]');}catch{return[];}}
+function oaSave(key,data){localStorage.setItem(key(),JSON.stringify(data));}
+
+let oaAbaAtual='fila';
+let oaIdAtivo=null; // id do prospecto sendo discado
+let oaImportDados=[];
+let oaTimerInterval=null;
+let oaTimerSeg=0;
+
+function oaMudarAba(aba){
+  oaAbaAtual=aba;
+  ['fila','descartados','ativados'].forEach(a=>{
+    document.getElementById(`oa-aba-${a}`)?.style&&(document.getElementById(`oa-aba-${a}`).style.display=a===aba?'block':'none');
+    document.getElementById(`oa-tab-${a}`)?.classList[a===aba?'add':'remove']('active');
+  });
+}
+
+function renderOA(){
+  const fila=oaLoad(OA_FILA_KEY);
+  const desc=oaLoad(OA_DESC_KEY);
+  const atv=oaLoad(OA_ATV_KEY);
+  const sess=oaLoad(OA_SESS_KEY)||{ativados:0,descartados:0,ligados:0};
+
+  // KPIs
+  const total=fila.length+desc.length;
+  const taxa=total>0?Math.round((atv.length/(atv.length+desc.length+0.001))*100):0;
+  el('oa-k-fila').textContent=fila.length;
+  el('oa-k-ativados').textContent=atv.length;
+  el('oa-k-descartados').textContent=desc.length;
+  el('oa-k-taxa').textContent=taxa+'%';
+  const hoje=new Date().toDateString();
+  const ligHoje=atv.filter(a=>new Date(a.ativadoEm).toDateString()===hoje).length+desc.filter(d=>new Date(d.descartadoEm||d._ts).toDateString()===hoje).length;
+  el('oa-k-ligados').textContent=ligHoje;
+
+  // Fila count
+  if(el('oa-fila-count'))el('oa-fila-count').textContent=fila.length;
+  if(el('oa-desc-count'))el('oa-desc-count').textContent=desc.length;
+  if(el('oa-atv-count'))el('oa-atv-count').textContent=atv.length;
+
+  // --- Card ativo ---
+  const search=(el('oa-search')?.value||'').toLowerCase();
+  const filaFiltrada=fila.filter(p=>!search||p.nome.toLowerCase().includes(search)||(p.telefone||'').includes(search));
+
+  const ativoEl=document.getElementById('oa-prospecto-ativo');
+  if(!ativoEl)return;
+
+  // Se há um prospecto selecionado, manter; caso contrário, primeiro da fila
+  const prospectoAtivo=fila.find(p=>p.id===oaIdAtivo)||filaFiltrada[0]||null;
+  if(prospectoAtivo){
+    oaIdAtivo=prospectoAtivo.id;
+    ativoEl.innerHTML=oaCardAtivo(prospectoAtivo);
+  } else {
+    ativoEl.innerHTML=`<div style="background:#111827;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:40px;text-align:center;color:#334155;font-size:13px">
+      ⚡ Nenhum prospecto na fila.<br><span style="font-size:11px">Importe uma lista ou adicione manualmente.</span>
+      <div style="margin-top:16px;display:flex;gap:8px;justify-content:center">
+        <button class="btn-p" onclick="oaAbrirImportar()" style="background:#F59E0B;border-color:#D97706;color:#000;font-size:12px">📥 Importar lista</button>
+        <button class="btn-p" onclick="oaAbrirAddManual()" style="font-size:12px">+ Adicionar</button>
+      </div>
+    </div>`;
+  }
+
+  // --- Lista da fila ---
+  const listaEl=document.getElementById('oa-lista-fila');
+  if(listaEl){
+    listaEl.innerHTML=filaFiltrada.length?filaFiltrada.map((p,i)=>`
+      <div class="oa-item${p.id===oaIdAtivo?' oa-ativo-row':''}" onclick="oaSelecionar('${p.id}')">
+        <div class="oa-item-av">${p.nome.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase()}</div>
+        <div class="oa-item-info">
+          <div class="oa-item-nome">${p.nome}</div>
+          <div class="oa-item-sub">${p.telefone||'Sem tel'} ${p.obs?'· '+p.obs.slice(0,30):''}${p.importadoEm?`<span style="color:#334155;font-size:9px;margin-left:4px">· ${new Date(p.importadoEm).toLocaleDateString('pt-BR')}</span>`:''}</div>
+        </div>
+        <div class="oa-item-actions">
+          ${p.telefone?`<a href="tel:${p.telefone.replace(/\D/g,'')}" class="oa-mini-btn oa-mini-ligar" onclick="oaIniciarTimer(event)">📞</a>`:''}
+          <button class="oa-mini-btn oa-mini-ativar" onclick="oaAbrirAtivar('${p.id}',event)">✅</button>
+          <button class="oa-mini-btn oa-mini-descartar" onclick="oaDescartar('${p.id}',event)">🗑</button>
+        </div>
+      </div>`).join('')
+    :`<div class="disc-vazia" style="color:#475569">Fila vazia!</div>`;
+  }
+
+  // --- Lista descartados ---
+  const descEl=document.getElementById('oa-lista-descartados');
+  if(descEl){
+    descEl.innerHTML=desc.length?desc.map(p=>`
+      <div class="oa-desc-item">
+        <div class="oa-desc-av">${p.nome.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase()}</div>
+        <div class="oa-desc-info">
+          <div class="oa-desc-nome">${p.nome}</div>
+          <div class="oa-desc-sub">${p.telefone||'Sem tel'} ${p.motivoDesc?'· '+p.motivoDesc:''}</div>
+        </div>
+        <button class="oa-btn-restaurar" onclick="oaRestaurar('${p.id}')">↩ Restaurar</button>
+      </div>`).join('')
+    :`<div class="disc-vazia" style="color:#334155;font-size:12px">Nenhum descartado ainda.</div>`;
+  }
+
+  // --- Lista ativados ---
+  const atvEl=document.getElementById('oa-lista-ativados');
+  if(atvEl){
+    atvEl.innerHTML=atv.length?[...atv].reverse().map(p=>`
+      <div class="oa-ativados-item">
+        <div class="oa-ativados-dot"></div>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:12px;font-weight:500;color:#F8FAFC;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.nome}</div>
+          <div style="font-size:10px;color:#475569">${p.telefone||'—'} · Ativado por ${p.ativadoPor||'—'} · ${p.ativadoEm?new Date(p.ativadoEm).toLocaleDateString('pt-BR'):''}</div>
+        </div>
+        <span class="disc-badge" style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);color:#86EFAC;font-size:10px;padding:3px 8px">${p.interesse==='hot'?'🔥':p.interesse==='warm'?'🟡':'🧊'} Lead criado</span>
+      </div>`).join('')
+    :`<div class="disc-vazia" style="color:#334155;font-size:12px">Nenhum lead ativado ainda.</div>`;
+  }
+}
+
+function el(id){return document.getElementById(id);}
+
+function oaCardAtivo(p){
+  return`<div class="oa-card-ativo">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px">
+      <div>
+        <div class="oa-nome">${p.nome}</div>
+        ${p.telefone?`<a href="tel:${p.telefone.replace(/\D/g,'')}" class="oa-tel">${p.telefone}</a>`:`<span style="font-size:12px;color:#475569">Sem telefone</span>`}
+      </div>
+      <span style="font-size:10px;font-weight:500;padding:4px 10px;border-radius:20px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);color:#FCD34D;flex-shrink:0">Prospecção</span>
+    </div>
+    ${p.obs?`<div style="font-size:11px;color:#475569;background:rgba(255,255,255,0.03);border-radius:6px;padding:8px 10px;margin-bottom:12px">${p.obs}</div>`:''}
+    ${p.email?`<div style="font-size:11px;color:#475569;margin-bottom:10px">✉ ${p.email}</div>`:''}
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+      ${p.telefone?`<a href="tel:${p.telefone.replace(/\D/g,'')}" class="oa-btn-ligar" id="oa-btn-ligar-main" onclick="oaIniciarTimer(event)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Ligar agora
+      </a>`:''}
+      ${p.telefone?`<a href="https://wa.me/55${p.telefone.replace(/\D/g,'')}" target="_blank" class="disc-pular" style="border-color:rgba(34,197,94,0.2);color:#86EFAC;text-decoration:none">WhatsApp</a>`:''}
+    </div>
+    <div id="oa-timer-el" style="display:none;margin-bottom:12px"><span class="disc-timer"><span class="disc-timer-dot"></span><span id="oa-timer-txt">00:00</span> em ligação</span></div>
+    <textarea class="oa-obs-input" id="oa-obs-${p.id}" placeholder="Observação da ligação (opcional)..." rows="2"></textarea>
+    <div class="oa-acoes">
+      <button class="oa-btn-ativar" onclick="oaAbrirAtivar('${p.id}')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Ativar — criar lead
+      </button>
+      <button class="oa-btn-descartar" onclick="oaDescartar('${p.id}')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+        Descartar
+      </button>
+      <button class="oa-btn-pular-oa" onclick="oaPular('${p.id}')">Pular →</button>
+    </div>
+  </div>`;
+}
+
+function oaIniciarTimer(e){
+  if(e)e.stopPropagation();
+  const el=document.getElementById('oa-timer-el');
+  if(el)el.style.display='flex';
+  if(oaTimerInterval)clearInterval(oaTimerInterval);
+  oaTimerSeg=0;
+  oaTimerInterval=setInterval(()=>{
+    oaTimerSeg++;
+    const m=String(Math.floor(oaTimerSeg/60)).padStart(2,'0');
+    const s=String(oaTimerSeg%60).padStart(2,'0');
+    const t=document.getElementById('oa-timer-txt');
+    if(t)t.textContent=m+':'+s;
+  },1000);
+}
+function oaPararTimer(){
+  if(oaTimerInterval){clearInterval(oaTimerInterval);oaTimerInterval=null;}
+  oaTimerSeg=0;
+  const el=document.getElementById('oa-timer-el');
+  if(el)el.style.display='none';
+}
+
+function oaSelecionar(id){
+  oaIdAtivo=id;
+  renderOA();
+}
+
+function oaPular(id){
+  // Move para o final da fila
+  const fila=oaLoad(OA_FILA_KEY);
+  const idx=fila.findIndex(p=>p.id===id);
+  if(idx>=0){const [item]=fila.splice(idx,1);fila.push(item);}
+  oaSave(OA_FILA_KEY,fila);
+  oaIdAtivo=null;
+  oaPararTimer();
+  renderOA();
+}
+
+function oaDescartar(id,e){
+  if(e){e.stopPropagation();e.preventDefault();}
+  oaPararTimer();
+  const fila=oaLoad(OA_FILA_KEY);
+  const desc=oaLoad(OA_DESC_KEY);
+  const idx=fila.findIndex(p=>p.id===id);
+  if(idx<0)return;
+  const obs=document.getElementById(`oa-obs-${id}`)?.value?.trim()||'';
+  const item={...fila[idx],descartadoEm:new Date().toISOString(),motivoDesc:obs||null,_ts:Date.now()};
+  fila.splice(idx,1);
+  desc.push(item);
+  oaSave(OA_FILA_KEY,fila);
+  oaSave(OA_DESC_KEY,desc);
+  // próximo da fila
+  oaIdAtivo=fila[0]?.id||null;
+  showToast(`${item.nome.split(' ')[0]} descartado — volta para a fila via Descartados`,'info');
+  renderOA();
+}
+
+function oaRestaurar(id){
+  const desc=oaLoad(OA_DESC_KEY);
+  const fila=oaLoad(OA_FILA_KEY);
+  const idx=desc.findIndex(p=>p.id===id);
+  if(idx<0)return;
+  const item={...desc[idx]};
+  delete item.descartadoEm;delete item.motivoDesc;delete item._ts;
+  desc.splice(idx,1);
+  fila.unshift(item); // volta para o início da fila
+  oaSave(OA_DESC_KEY,desc);
+  oaSave(OA_FILA_KEY,fila);
+  showToast(`${item.nome.split(' ')[0]} restaurado para a fila!`,'success');
+  renderOA();
+}
+
+function oaAbrirAtivar(id,e){
+  if(e){e.stopPropagation();e.preventDefault();}
+  const fila=oaLoad(OA_FILA_KEY);
+  const p=fila.find(x=>x.id===id);
+  if(!p)return;
+  document.getElementById('oa-ativar-id').value=id;
+  document.getElementById('oa-ativar-info').innerHTML=`<strong style="color:#F8FAFC">${p.nome}</strong><br>📞 ${p.telefone||'Sem telefone'}${p.email?` · ✉ ${p.email}`:''}`;
+  // preencher obs do campo se houver
+  const obsEl=document.getElementById(`oa-obs-${id}`);
+  if(obsEl&&obsEl.value)document.getElementById('oa-atv-obs').value=obsEl.value;
+  // reset outros campos
+  ['oa-atv-tipo','oa-atv-valor','oa-atv-bairro'].forEach(i=>{const el=document.getElementById(i);if(el)el.value='';});
+  document.getElementById('oa-atv-int').value='warm';
+  document.getElementById('oa-atv-origem').value='Oferta Ativa';
+  openModal('oa-ativar');
+}
+
+async function oaConfirmarAtivar(){
+  const id=document.getElementById('oa-ativar-id').value;
+  const fila=oaLoad(OA_FILA_KEY);
+  const atv=oaLoad(OA_ATV_KEY);
+  const idx=fila.findIndex(p=>p.id===id);
+  if(idx<0)return;
+  const p=fila[idx];
+  const tipo=document.getElementById('oa-atv-tipo').value;
+  const valor=document.getElementById('oa-atv-valor').value.trim();
+  const bairro=document.getElementById('oa-atv-bairro').value.trim();
+  const interesse=document.getElementById('oa-atv-int').value;
+  const origem=document.getElementById('oa-atv-origem').value;
+  const obs=document.getElementById('oa-atv-obs').value.trim();
+
+  const btn=document.getElementById('btn-oa-confirmar-ativar');
+  btn.innerHTML='<span class="spin"></span>';btn.disabled=true;
+
+  try{
+    const agora=new Date().toISOString();
+    const histInicial=[{data:agora,obs:`⚡ Ativado via Oferta Ativa${obs?': '+obs:''}`,autor:currentUser.nome}];
+    await SB.ins('leads',[{
+      nome:p.nome,
+      telefone:p.telefone||null,
+      email:p.email||null,
+      tipo_imovel:tipo||null,
+      valor:valor||null,
+      bairro:bairro||null,
+      interesse,
+      origem,
+      corretor:currentUser.nome,
+      status:'Lead Novo',
+      created_at:agora,
+      historico_contatos:JSON.stringify(histInicial),
+    }]);
+    // Remove da fila, add em ativados
+    fila.splice(idx,1);
+    atv.push({...p,ativadoEm:agora,ativadoPor:currentUser.nome,interesse});
+    oaSave(OA_FILA_KEY,fila);
+    oaSave(OA_ATV_KEY,atv);
+    oaIdAtivo=fila[0]?.id||null;
+    oaPararTimer();
+    closeModal('oa-ativar');
+    showToast(`🎉 ${p.nome.split(' ')[0]} ativado como Lead Novo!`,'success');
+    await loadAll();
+    renderOA();
+  }catch(err){showToast('Erro ao criar lead: '+err.message,'error');}
+  btn.innerHTML='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Ativar — criar lead';
+  btn.disabled=false;
+}
+
+/* ── OA: Add manual ── */
+function oaAbrirAddManual(){
+  ['oa-add-nome','oa-add-tel','oa-add-email','oa-add-obs'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  openModal('oa-add');
+  setTimeout(()=>document.getElementById('oa-add-nome')?.focus(),100);
+}
+
+function oaSalvarAdd(){
+  const nome=document.getElementById('oa-add-nome').value.trim();
+  const tel=document.getElementById('oa-add-tel').value.trim();
+  if(!nome){showToast('Informe o nome!','error');return;}
+  if(!tel){showToast('Informe o telefone!','error');return;}
+  const fila=oaLoad(OA_FILA_KEY);
+  const id='oa_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+  fila.push({id,nome,telefone:tel,email:document.getElementById('oa-add-email').value.trim()||null,obs:document.getElementById('oa-add-obs').value.trim()||null,importadoEm:new Date().toISOString()});
+  oaSave(OA_FILA_KEY,fila);
+  if(!oaIdAtivo)oaIdAtivo=id;
+  closeModal('oa-add');
+  showToast(`${nome.split(' ')[0]} adicionado à Oferta Ativa!`,'success');
+  renderOA();
+}
+
+/* ── OA: Importar CSV/Sheets ── */
+function oaAbrirImportar(){
+  oaImportDados=[];
+  const fi=document.getElementById('oa-imp-file');if(fi)fi.value='';
+  const su=document.getElementById('oa-imp-sheets');if(su)su.value='';
+  const pv=document.getElementById('oa-imp-preview');if(pv)pv.style.display='none';
+  const bi=document.getElementById('btn-oa-importar');if(bi)bi.disabled=true;
+  openModal('oa-importar');
+}
+
+async function oaPreviewImport(input){
+  const file=input.files[0];if(!file)return;
+  const text=await file.text();
+  const rows=parseCSV(text); // reusa função existente
+  oaImportDados=rows.map(r=>({
+    nome:r.nome||r.name||r.cliente||r.contato||'',
+    telefone:(r.telefone||r.fone||r.celular||r.whatsapp||r.phone||r.tel||'').replace(/'+/g,'').trim(),
+    email:r.email||r['e-mail']||r.mail||'',
+    obs:r.obs||r.observacao||r.observação||'',
+  })).filter(r=>r.nome);
+  oaMostrarPreviewImport();
+}
+
+async function oaBuscarSheets(){
+  const url=document.getElementById('oa-imp-sheets')?.value?.trim();
+  if(!url){showToast('Cole o link!','error');return;}
+  const match=url.match(/\/d\/([a-zA-Z0-9-_]+)/);
+  if(!match){showToast('Link inválido!','error');return;}
+  const csvUrl=`https://docs.google.com/spreadsheets/d/${match[1]}/export?format=csv`;
+  try{
+    showToast('Buscando planilha...','info');
+    const resp=await fetch(csvUrl);
+    if(!resp.ok)throw new Error('Planilha não acessível');
+    const text=await resp.text();
+    const rows=parseCSV(text);
+    oaImportDados=rows.map(r=>({
+      nome:r.nome||r.name||r.cliente||r.contato||'',
+      telefone:(r.telefone||r.fone||r.celular||r.whatsapp||r.tel||'').replace(/'+/g,'').trim(),
+      email:r.email||r['e-mail']||r.mail||'',
+      obs:r.obs||r.observacao||r.observação||'',
+    })).filter(r=>r.nome);
+    oaMostrarPreviewImport();
+  }catch(e){showToast('Erro: '+e.message,'error');}
+}
+
+function oaMostrarPreviewImport(){
+  if(!oaImportDados.length){showToast('Nenhum contato encontrado','error');return;}
+  const pv=document.getElementById('oa-imp-preview');
+  const table=document.getElementById('oa-imp-preview-table');
+  const stats=document.getElementById('oa-imp-stats');
+  const sample=oaImportDados.slice(0,5);
+  table.innerHTML=`<table style="width:100%;border-collapse:collapse">
+    <tr style="background:rgba(255,255,255,0.04)">${['Nome','Telefone','E-mail'].map(h=>`<th style="padding:5px 8px;text-align:left;color:#475569;font-size:10px">${h}</th>`).join('')}</tr>
+    ${sample.map(r=>`<tr style="border-top:1px solid rgba(255,255,255,0.04)">${[r.nome,r.telefone||'—',r.email||'—'].map(v=>`<td style="padding:5px 8px;color:#CBD5E1;font-size:10px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${v}</td>`).join('')}</tr>`).join('')}
+  </table>`;
+  stats.innerHTML=`<span style="color:#FCD34D">⚡ ${oaImportDados.length} contatos encontrados</span>${oaImportDados.length>5?`<span style="color:#475569;margin-left:8px">+${oaImportDados.length-5} não exibidos</span>`:''}`;
+  pv.style.display='block';
+  document.getElementById('btn-oa-importar').disabled=false;
+}
+
+function oaEnviarImport(){
+  if(!oaImportDados.length)return;
+  const fila=oaLoad(OA_FILA_KEY);
+  let novos=0,dupl=0;
+  const telsExistentes=new Set(fila.map(p=>(p.telefone||'').replace(/\D/g,'')));
+  for(const r of oaImportDados){
+    const telN=(r.telefone||'').replace(/\D/g,'');
+    if(telN&&telsExistentes.has(telN)){dupl++;continue;}
+    const id='oa_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+    fila.push({id,nome:r.nome,telefone:r.telefone||null,email:r.email||null,obs:r.obs||null,importadoEm:new Date().toISOString()});
+    if(telN)telsExistentes.add(telN);
+    novos++;
+  }
+  oaSave(OA_FILA_KEY,fila);
+  if(!oaIdAtivo&&fila.length>0)oaIdAtivo=fila[0].id;
+  closeModal('oa-importar');
+  showToast(`⚡ ${novos} contatos na Oferta Ativa${dupl?` · ${dupl} duplicados ignorados`:''}!`,'success');
+  renderOA();
+}
+</script>
   const lead=allLeads?.find(l=>l.id===leadId);
   if(lead){
     aiLeadCtx=lead;
