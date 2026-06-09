@@ -301,7 +301,7 @@ body{
 .k-menu-wrap{position:relative;}
 .k-menu-btn{width:26px;height:26px;border-radius:6px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:#94A3B8;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:background .15s,color .15s;flex-shrink:0;letter-spacing:1px;}
 .k-menu-btn:hover{background:rgba(255,255,255,0.06);color:#94A3B8;}
-.k-menu-dropdown{position:absolute;top:32px;right:0;background:#0D1410;border:1px solid rgba(34,197,94,0.1);border-radius:10px;padding:4px;min-width:160px;z-index:100;box-shadow:0 8px 32px rgba(0,0,0,0.6),0 0 0 1px rgba(34,197,94,0.05);display:none;}
+.k-menu-dropdown{position:fixed;background:#0D1410;border:1px solid rgba(34,197,94,0.1);border-radius:10px;padding:4px;min-width:170px;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,0.6),0 0 0 1px rgba(34,197,94,0.05);display:none;}
 .k-menu-dropdown.open{display:block;}
 .k-menu-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:6px;font-size:11.5px;color:#86EFAC;cursor:pointer;transition:background .12s,color .12s;white-space:nowrap;}
 .k-menu-item:hover{background:rgba(34,197,94,0.06);color:#F0FDF4;}
@@ -1295,7 +1295,7 @@ body{
     <div class="mhd"><div class="mtitle" id="modal-lead-title">Novo Lead</div><div class="mclose" onclick="closeModal('add-lead')">✕</div></div>
     <input type="hidden" id="edit-lead-id">
     <div class="fr"><div class="fgm"><label class="flm">Nome</label><input class="fim" placeholder="João da Silva" id="new-nome"></div><div class="fgm"><label class="flm">Telefone</label><input class="fim" placeholder="(11) 99999-9999" id="new-tel"></div></div>
-    <div class="fr"><div class="fgm"><label class="flm">E-mail</label><input class="fim" placeholder="joao@email.com" id="new-email"></div><div class="fgm"><label class="flm">Origem</label><select class="fsm" id="new-origem"><option>Instagram</option><option>Facebook</option><option>Google</option><option>Indicação</option><option>Site</option><option>WhatsApp</option><option>Outro</option></select></div></div>
+    <div class="fr"><div class="fgm"><label class="flm">E-mail</label><input class="fim" placeholder="joao@email.com" id="new-email"></div><div class="fgm"><label class="flm">Origem</label><select class="fsm" id="new-origem"><option>Instagram</option><option>Facebook</option><option>Google</option><option>Landing Page</option><option>Indicação</option><option>Site</option><option>WhatsApp</option><option>Outro</option></select></div></div>
     <div class="fr">
       <div class="fgm"><label class="flm">Tipo de imóvel</label><select class="fsm" id="new-tipo"><option>Apartamento</option><option>Casa</option><option>Kitnet</option><option>Terreno</option><option>Comercial</option></select></div>
       <div class="fgm"><label class="flm">Valor pretendido <span style="color:#F59E0B;font-size:9px">● obrigatório p/ match</span></label><input class="fim" placeholder="R$ 350.000" id="new-valor"></div>
@@ -1759,6 +1759,8 @@ body{
 <script>
 const SURL='https://fjysqoqglqlpfxvxvvzt.supabase.co';
 const SKEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZqeXNxb3FnbHFscGZ4dnh2dnp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3MzE2NzYsImV4cCI6MjA5MzMwNzY3Nn0.pSxDsgeiDQysBTyuR6YFbn0vPBgKmhJ1awSWBwJpAkI';
+// ⚠️ Substitua pela sua chave da API Anthropic: https://console.anthropic.com/
+const AI_KEY='SUA_CHAVE_ANTHROPIC_AQUI';
 
 function dbReq(method,path,body){
   return new Promise((res,rej)=>{
@@ -2053,7 +2055,13 @@ function toggleKMenu(id,e){
   const menu=document.getElementById(id);
   const isOpen=menu.classList.contains('open');
   closeKMenus();
-  if(!isOpen)menu.classList.add('open');
+  if(!isOpen){
+    const btn=e.currentTarget;
+    const rect=btn.getBoundingClientRect();
+    menu.style.top=(rect.bottom+4)+'px';
+    menu.style.left=Math.min(rect.right-170, window.innerWidth-180)+'px';
+    menu.classList.add('open');
+  }
 }
 function closeKMenus(){
   document.querySelectorAll('.k-menu-dropdown.open').forEach(m=>m.classList.remove('open'));
@@ -2332,13 +2340,13 @@ async function distribuirDaFila(){
 /* ── DISTRIBUIR LEADS DA LANDING (origem Google, sem corretor) ── */
 function leadsLandingPendentes(){
   // leads vindos da campanha que ainda não têm dono
-  return allLeads.filter(l=>l.origem==='Google'&&(!l.corretor||l.corretor==='')&&l.status!=='Perdido');
+  return allLeads.filter(l=>l.origem==='Landing Page'&&(!l.corretor||l.corretor==='')&&l.status!=='Perdido');
 }
 
 function abrirFilaLanding(){
   const pend=leadsLandingPendentes();
   const resumo=document.getElementById('fila-land-resumo');
-  if(resumo)resumo.innerHTML=`<strong>${pend.length} leads da landing</strong> aguardando distribuição.<br><span style="font-size:10px;opacity:.7">Vindos da campanha (origem Google) e ainda sem corretor.</span>`;
+  if(resumo)resumo.innerHTML=`<strong>${pend.length} leads da landing</strong> aguardando distribuição.<br><span style="font-size:10px;opacity:.7">Vindos da landing page e ainda sem corretor.</span>`;
   if(!pend.length){showToast('Nenhum lead da landing pendente no momento.','error');return;}
   const lista=document.getElementById('fila-land-corretores');
   if(lista)lista.innerHTML=allCorretores.filter(c=>!['CEO','Kevin Bruno de Paula'].includes(c.nome)).map(c=>`
@@ -2583,17 +2591,17 @@ Responda APENAS em JSON válido, sem markdown, sem texto extra:
 }`;
 
   try{
-    const resp=await fetch('https://tiny-wildflower-2814.kevinbrunodpaula.workers.dev/',{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{'Content-Type':'application/json','x-api-key':AI_KEY,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
       body:JSON.stringify({
-        model:'llama-3.3-70b-versatile',
+        model:'claude-sonnet-4-20250514',
         max_tokens:600,
         messages:[{role:'user',content:prompt}]
       })
     });
     const data=await resp.json();
-    const raw=data.choices?.[0]?.message?.content||'';
+    const raw=data.content?.[0]?.text||'';
     const clean=raw.replace(/```json|```/g,'').trim();
     const result=JSON.parse(clean);
 
@@ -2838,7 +2846,7 @@ function setupUI(){
   if(perm('verTodos'))h+=`<div class="nav-item" onclick="exportarCSV('leads')"><span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span><span class="nav-label">Exportar CSV</span></div>`;
   if(perm('verTodos'))h+=`<div class="nav-item" onclick="abrirImportar()"><span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="3" x2="12" y2="15"/></svg></span><span class="nav-label">Importar Lista</span></div>`;
   if(perm('verTodos'))h+=`<div class="nav-item" onclick="abrirFila()" style="position:relative"><span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 001.95-1.57L23 6H6"/></svg></span><span class="nav-label">Distribuir Fila${(()=>{const f=JSON.parse(localStorage.getItem('cdp_fila')||'[]');return f.length>0?` (${f.length})`:''})()}</span></div>`;
-  if(perm('verTodos'))h+=`<div class="nav-item" onclick="abrirFilaLanding()" style="position:relative"><span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 11-5.8-1.6"/></svg></span><span class="nav-label">Leads da Landing</span>${(()=>{const n=allLeads.filter(l=>l.origem==='Google'&&(!l.corretor||l.corretor==='')&&l.status!=='Perdido').length;return n>0?`<span class="nav-badge" style="background:rgba(255,111,53,0.15);color:#FFB494;border:1px solid rgba(255,111,53,0.25)">${n}</span>`:''})()}</div>`;
+  if(perm('verTodos'))h+=`<div class="nav-item" onclick="abrirFilaLanding()" style="position:relative"><span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 11-5.8-1.6"/></svg></span><span class="nav-label">Leads da Landing</span>${(()=>{const n=allLeads.filter(l=>l.origem==='Landing Page'&&(!l.corretor||l.corretor==='')&&l.status!=='Perdido').length;return n>0?`<span class="nav-badge" style="background:rgba(255,111,53,0.15);color:#FFB494;border:1px solid rgba(255,111,53,0.25)">${n}</span>`:''})()}</div>`;
   if(perm('verUsuarios'))h+=`<div class="nav-sep"></div><div class="nav-sec"><span class="nav-sec-label">Administração</span></div><div class="nav-item" onclick="goTo('usuarios',this)"><span class="nav-ic">${ic.usr}</span><span class="nav-label">Usuários</span><span class="nav-badge" id="badge-pend" style="display:none">0</span></div>`;
   if(perm('verConfig'))h+=`<div class="nav-item" onclick="goTo('config',this)"><span class="nav-ic">${ic.cfg}</span><span class="nav-label">Configurações</span></div>`;
   nav.innerHTML=h;
@@ -4385,18 +4393,19 @@ ${aiLeadCtx?`- Lead em foco: ${aiLeadCtx.nome} | Status: ${aiLeadCtx.status} | I
 
 
   try{
-    const msgs=[{role:'system',content:systemPrompt},...aiHistory];
-    const resp=await fetch('https://tiny-wildflower-2814.kevinbrunodpaula.workers.dev/',{
+    const msgs=aiHistory.filter(m=>m.role!=='system');
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{'Content-Type':'application/json','x-api-key':AI_KEY,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
       body:JSON.stringify({
-        model:'llama-3.3-70b-versatile',
+        model:'claude-sonnet-4-20250514',
         max_tokens:1000,
+        system:systemPrompt,
         messages:msgs,
       })
     });
     const data=await resp.json();
-    const reply=data.choices?.[0]?.message?.content||'Não consegui gerar uma resposta. Tente novamente.';
+    const reply=data.content?.[0]?.text||'Não consegui gerar uma resposta. Tente novamente.';
     aiRemoveTyping();
     aiAddMsg('ai',reply);
     aiHistory.push({role:'assistant',content:reply});
