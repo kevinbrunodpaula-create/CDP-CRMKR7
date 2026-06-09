@@ -2872,7 +2872,8 @@ async function loadAll(){
       SB.sel('usuarios','ativo=eq.false&status_aprovacao=eq.pendente&order=created_at.desc'),
       SB.sel('leads','status=eq.Fechado&order=created_at.desc&select=*'),
     ]);
-    allLeads=currentUser.cargo==='Corretor'?leads.filter(l=>l.corretor===currentUser.nome):leads;
+    const normNome=s=>(s||'').trim().toLowerCase();
+    allLeads=currentUser.cargo==='Corretor'?leads.filter(l=>normNome(l.corretor)===normNome(currentUser.nome)):leads;
     allLeadsRanking=todosLeads; // todos os fechados para o ranking global
     allImoveis=imoveis;allCorretores=corretores;allUsuarios=usuarios;
     allPendentes=perm('aprovar')?pendentes.filter(p=>(PODE_APROVAR[p.cargo]||[]).includes(currentUser.cargo)):[];
