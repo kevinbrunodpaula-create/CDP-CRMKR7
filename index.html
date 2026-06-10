@@ -1123,8 +1123,10 @@ body{
         <div>
           <div style="font-size:15px;font-weight:600;letter-spacing:-0.02em">Comissões</div>
           <div style="font-size:11px;color:#94A3B8;margin-top:2px">Controle de comissões por venda fechada</div>
+          <div id="com-mes-label" style="font-size:12px;color:#86EFAC;font-weight:600;margin-top:4px"></div>
         </div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+          <button class="btn-s" onclick="irParaMesAtualComissao()" title="Ir para mês atual" style="font-size:11px;padding:4px 10px">📅 Mês atual</button>
           <select class="fsel" id="com-filter-mes" onchange="renderComissoes()">
             <option value="">Todos os meses</option>
           </select>
@@ -1934,6 +1936,14 @@ function getVendasComComissao(){
   return fechados.filter(l=>l._pctComissao).sort((a,b)=>new Date(b.fechado_em||b.created_at)-new Date(a.fechado_em||a.created_at));
 }
 
+function irParaMesAtualComissao(){
+  const mesEl=document.getElementById('com-filter-mes');
+  if(!mesEl)return;
+  const mesAtual=(()=>{const n=new Date();return`${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}`;})();
+  if(mesEl.querySelector(`option[value="${mesAtual}"]`))mesEl.value=mesAtual;
+  renderComissoes();
+}
+
 function renderComissoes(){
   const fmt=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
   const filterMes=document.getElementById('com-filter-mes')?.value||'';
@@ -1947,6 +1957,18 @@ function renderComissoes(){
     [...meses].sort().reverse().forEach(m=>{const[y,mo]=m.split('-');const opt=document.createElement('option');opt.value=m;opt.textContent=new Date(y,mo-1).toLocaleString('pt-BR',{month:'long',year:'numeric'});mesEl.appendChild(opt);});
     // Pré-seleciona mês atual automaticamente
     if(mesEl.querySelector(`option[value="${mesAtual}"]`))mesEl.value=mesAtual;
+  }
+  // Label do mês selecionado
+  const mesLabel=document.getElementById('com-mes-label');
+  if(mesLabel){
+    if(filterMes){
+      const [y,mo]=filterMes.split('-');
+      const nomeMes=new Date(y,mo-1).toLocaleString('pt-BR',{month:'long',year:'numeric'});
+      const mesAtualVal=(()=>{const n=new Date();return`${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}`;})();
+      mesLabel.textContent=`📅 Exibindo: ${nomeMes.charAt(0).toUpperCase()+nomeMes.slice(1)}${filterMes===mesAtualVal?' · Mês atual':''}`;
+    } else {
+      mesLabel.textContent='📅 Exibindo: Todos os meses';
+    }
   }
   const corrEl=document.getElementById('com-filter-corr');
   if(corrEl&&corrEl.options.length<=1){
