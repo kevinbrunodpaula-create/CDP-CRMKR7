@@ -254,7 +254,7 @@ body{
 .kcards{padding:8px;flex:1;overflow-y:auto;min-height:120px;display:flex;flex-direction:column;gap:5px;}
 .kcards::-webkit-scrollbar{width:0;}
 .kcard{background:#0D1410;border:1px solid rgba(34,197,94,0.07);border-radius:10px;padding:12px;cursor:grab;position:relative;transition:border-color .18s,background .18s,transform .18s,box-shadow .18s;}
-.kcard:hover{background:#111A14;border-color:rgba(34,197,94,0.18);transform:translateY(-1px);box-shadow:0 4px 20px rgba(0,0,0,0.4),0 0 0 1px rgba(34,197,94,0.06);}
+.kcard:hover{background:#111A14;border-color:rgba(34,197,94,0.18);box-shadow:0 6px 24px rgba(0,0,0,0.5),0 0 0 1px rgba(34,197,94,0.1);z-index:2;}
 .kcard::before{content:'';position:absolute;top:8px;left:0;bottom:8px;width:3px;border-radius:0 3px 3px 0;background:var(--k-accent,transparent);opacity:0.7;transition:opacity .18s,width .18s;}
 .kcard:hover::before{opacity:1;width:4px;}
 .kcard.dragging{opacity:0.25;transform:scale(0.97);cursor:grabbing;}
@@ -301,7 +301,7 @@ body{
 .k-menu-wrap{position:relative;}
 .k-menu-btn{width:26px;height:26px;border-radius:6px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:#94A3B8;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:background .15s,color .15s;flex-shrink:0;letter-spacing:1px;}
 .k-menu-btn:hover{background:rgba(255,255,255,0.06);color:#94A3B8;}
-.k-menu-dropdown{position:fixed;background:#0D1410;border:1px solid rgba(34,197,94,0.1);border-radius:10px;padding:4px;min-width:170px;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,0.6),0 0 0 1px rgba(34,197,94,0.05);display:none;}
+.k-menu-dropdown{position:fixed;background:#0D1410;border:1px solid rgba(34,197,94,0.1);border-radius:10px;padding:4px;min-width:170px;z-index:99999;box-shadow:0 8px 32px rgba(0,0,0,0.6),0 0 0 1px rgba(34,197,94,0.05);display:none;}
 .k-menu-dropdown.open{display:block;}
 .k-menu-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:6px;font-size:11.5px;color:#86EFAC;cursor:pointer;transition:background .12s,color .12s;white-space:nowrap;}
 .k-menu-item:hover{background:rgba(34,197,94,0.06);color:#F0FDF4;}
@@ -1762,7 +1762,7 @@ body{
 const SURL='https://fjysqoqglqlpfxvxvvzt.supabase.co';
 const SKEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZqeXNxb3FnbHFscGZ4dnh2dnp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3MzE2NzYsImV4cCI6MjA5MzMwNzY3Nn0.pSxDsgeiDQysBTyuR6YFbn0vPBgKmhJ1awSWBwJpAkI';
 // ⚠️ Substitua pela sua chave da API Anthropic: https://console.anthropic.com/
-const AI_KEY='SUA_CHAVE_ANTHROPIC_AQUI';
+const AI_KEY='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';
 
 function dbReq(method,path,body){
   return new Promise((res,rej)=>{
@@ -1971,14 +1971,19 @@ function renderComissoes(){
     }
   }
   const corrEl=document.getElementById('com-filter-corr');
-  if(corrEl&&corrEl.options.length<=1){
-    allCorretores.forEach(c=>{const opt=document.createElement('option');opt.value=c.nome;opt.textContent=c.nome;corrEl.appendChild(opt);});
+  const isCEODir=['CEO','Diretor'].includes(currentUser.cargo);
+  const isCorretor=currentUser.cargo==='Corretor';
+  // Corretor: esconde filtro de corretor
+  if(corrEl){
+    corrEl.style.display=isCorretor?'none':'';
+    if(corrEl.options.length<=1)allCorretores.forEach(c=>{const opt=document.createElement('option');opt.value=c.nome;opt.textContent=c.nome;corrEl.appendChild(opt);});
   }
   let lista=getVendasComComissao();
+  // Corretor só vê as próprias comissões
+  if(isCorretor)lista=lista.filter(l=>(l.corretor||'').trim().toLowerCase()===currentUser.nome.trim().toLowerCase());
   if(filterMes)lista=lista.filter(l=>{const d=new Date(l.fechado_em||l.created_at);return`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`===filterMes;});
-  if(filterCorr)lista=lista.filter(l=>l.corretor===filterCorr);
+  if(filterCorr&&!isCorretor)lista=lista.filter(l=>l.corretor===filterCorr);
   if(filterSt)lista=lista.filter(l=>(l.status_comissao||'pendente')===filterSt);
-  const isCEODir=['CEO','Diretor'].includes(currentUser.cargo);
   const thFat=document.getElementById('com-th-fat');
   if(thFat)thFat.style.display=isCEODir?'':'none';
   const total=lista.reduce((a,l)=>a+l._valorComissao,0);
@@ -1990,7 +1995,9 @@ function renderComissoes(){
     <div class="com-kpi"><div class="com-kpi-val">${fmt(total)}</div><div class="com-kpi-lbl">Total comissões</div></div>
     <div class="com-kpi"><div class="com-kpi-val" style="color:#86EFAC">${fmt(pago)}</div><div class="com-kpi-lbl">✅ Pago</div></div>
     <div class="com-kpi"><div class="com-kpi-val" style="color:#FCD34D">${fmt(pendente)}</div><div class="com-kpi-lbl">⏳ A pagar</div></div>
-    ${isCEODir?`<div class="com-kpi" style="grid-column:1/-1;background:rgba(34,197,94,0.07);border-color:rgba(34,197,94,0.15)"><div class="com-kpi-val" style="color:#86EFAC">${fmt(totalFat)}</div><div class="com-kpi-lbl">💼 Faturamento imobiliária</div></div>`:''}`;
+    ${isCEODir?`<div class="com-kpi" style="grid-column:1/-1;background:rgba(34,197,94,0.07);border-color:rgba(34,197,94,0.15)"><div class="com-kpi-val" style="color:#86EFAC">${fmt(totalFat)}</div><div class="com-kpi-lbl">💼 Faturamento total imobiliária</div></div>`:''}
+    ${isCorretor?`<div class="com-kpi" style="grid-column:1/-1;background:rgba(99,102,241,0.07);border-color:rgba(99,102,241,0.2)"><div class="com-kpi-val" style="color:#A5B4FC">${fmt(total)}</div><div class="com-kpi-lbl">💰 Minhas comissões no período</div></div>`:''}
+  `;
   const tbody=document.getElementById('com-tbody');
   if(!tbody)return;
   if(!lista.length){tbody.innerHTML=`<tr><td colspan="${isCEODir?8:7}" style="text-align:center;padding:40px;color:#64748B">Nenhuma comissão encontrada</td></tr>`;return;}
@@ -2861,7 +2868,7 @@ function setupUI(){
   if(perm('verTodos'))h+=`<div class="nav-sep"></div><div class="nav-sec"><span class="nav-sec-label">// Equipe</span></div><div class="nav-item" onclick="goTo('imoveis',this)"><span class="nav-ic">${ic.im}</span><span class="nav-label">Imóveis</span></div><div class="nav-item" onclick="goTo('corretores',this)"><span class="nav-ic">${ic.corr}</span><span class="nav-label">Corretores</span></div>`;
   h+=`<div class="nav-sep"></div><div class="nav-sec"><span class="nav-sec-label">// Gestão</span></div><div class="nav-item" onclick="goTo('agenda',this)"><span class="nav-ic">${ic.ag}</span><span class="nav-label">Agenda</span></div>`;
   if(perm('verRelatorio'))h+=`<div class="nav-item" onclick="goTo('relatorios',this)"><span class="nav-ic">${ic.rel}</span><span class="nav-label">Relatórios</span></div>`;
-  if(['CEO','Diretor'].includes(currentUser.cargo))h+=`<div class="nav-item" onclick="goTo('comissoes',this)"><span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v2m0 8v2M9 9h4a2 2 0 010 4H9a2 2 0 000 4h5"/></svg></span><span class="nav-label">Comissões</span></div>`;
+  h+=`<div class="nav-item" onclick="goTo('comissoes',this)"><span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v2m0 8v2M9 9h4a2 2 0 010 4H9a2 2 0 000 4h5"/></svg></span><span class="nav-label">Comissões</span></div>`;
   h+=`<div class="nav-item" onclick="goTo('ligacoes',this);renderDiscagem()"><span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span><span class="nav-label">Ligações</span></div>`;
   h+=`<div class="nav-item" onclick="goTo('oferta-ativa',this);renderOA()" style="position:relative"><span class="nav-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><span class="nav-label">Oferta Ativa</span>${(()=>{const d=JSON.parse(localStorage.getItem('cdp_oa_fila')||'[]');return d.length>0?`<span class="nav-badge" style="background:rgba(245,158,11,0.15);color:#FCD34D;border:1px solid rgba(245,158,11,0.2)">${d.length}</span>`:''})()}</div>`;
   // Exportar/Importar CSV para gestores
