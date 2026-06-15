@@ -1146,7 +1146,7 @@ body{
         <table class="com-table">
           <thead><tr>
             <th>Lead / Assinatura</th>
-            <th>Corretor</th>
+            <th id="com-th-corretor">Corretor</th>
             <th>Valor Venda</th>
             <th>%</th>
             <th>Comissão</th>
@@ -1986,6 +1986,8 @@ function renderComissoes(){
   if(filterSt)lista=lista.filter(l=>(l.status_comissao||'pendente')===filterSt);
   const thFat=document.getElementById('com-th-fat');
   if(thFat)thFat.style.display=isCEODir?'':'none';
+  const thCorr=document.getElementById('com-th-corretor');
+  if(thCorr)thCorr.style.display=isCorretor?'none':'';
   const total=lista.reduce((a,l)=>a+l._valorComissao,0);
   const pago=lista.filter(l=>l.status_comissao==='pago').reduce((a,l)=>a+l._valorComissao,0);
   const pendente=lista.filter(l=>(l.status_comissao||'pendente')!=='pago').reduce((a,l)=>a+l._valorComissao,0);
@@ -2016,15 +2018,15 @@ function renderComissoes(){
         <div style="font-weight:500;color:#F0FDF4;font-size:12px">${l.nome}</div>
         <div style="font-size:10px;color:#64748B">${l._ordemVenda}ª assinatura · ${dataLabel}</div>
       </td>
-      <td style="font-size:11px">${(l.corretor||'—').split(' ')[0]}</td>
+      ${!isCorretor?`<td style="font-size:11px">${(l.corretor||'—').split(' ')[0]}</td>`:''}
       <td style="font-size:11px;font-weight:500">${fmt(pv2(l.valor))}</td>
       <td>
         <span class="com-pct">${l._pctComissao}%${pctManual}</span>
-        <button onclick="editarPctComissao('${l.id}','${l._pctComissao}')" style="background:none;border:none;cursor:pointer;color:#94A3B8;font-size:10px;padding:0 3px" title="Alterar %">✏️</button>
+        ${isCEODir?`<button onclick="editarPctComissao('${l.id}','${l._pctComissao}')" style="background:none;border:none;cursor:pointer;color:#94A3B8;font-size:10px;padding:0 3px" title="Alterar %">✏️</button>`:''}
       </td>
       <td style="font-weight:600;color:${cor};font-size:12px">${fmt(l._valorComissao)}</td>
       ${isCEODir?`<td style="font-size:11px;color:#86EFAC">${l._faturamento?fmt(l._faturamento):l.pct_faturamento?fmt(0):'<span style="color:#64748B">—</span>'}</td>`:''}
-      <td><span class="com-st ${st}" onclick="abrirModalComissao('${l.id}','${l.nome.replace(/'/g,'')}','${(l.corretor||'').replace(/'/g,'')}','${fmt(l._valorComissao)}','${st}')">${si[st]||'⏳'} ${st}</span></td>
+      <td><span class="com-st ${st}" ${isCEODir?`onclick="abrirModalComissao('${l.id}','${l.nome.replace(/'/g,'')}','${(l.corretor||'').replace(/'/g,'')}','${fmt(l._valorComissao)}','${st}')"`:''} style="${isCorretor?'cursor:default':''}">${si[st]||'⏳'} ${st}</span></td>
       <td style="color:#94A3B8;font-size:11px">${new Date(dataRef).toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'2-digit'})}</td>
     </tr>`;
   }).join('');
